@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "esnext",
+    "target": "es2020",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "rootDirs": ["./src"],
+    "outDir": "dist",
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+    "lib": ["ESNext", "dom"],
+    "typeRoots": ["node_modules/@types"],
+    "jsx": "react-jsx"
+  },
+  "exclude": ["dist", "node_modules"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts"]
+}

@@ -1,0 +1,3176 @@
+<html lang="en" data-headlessui-focus-visible="">
+  <head>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      :root,
+      :host {
+        --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Solid';
+        --fa-font-regular: normal 400 1em/1 'Font Awesome 6 Regular';
+        --fa-font-light: normal 300 1em/1 'Font Awesome 6 Light';
+        --fa-font-thin: normal 100 1em/1 'Font Awesome 6 Thin';
+        --fa-font-duotone: normal 900 1em/1 'Font Awesome 6 Duotone';
+        --fa-font-sharp-solid: normal 900 1em/1 'Font Awesome 6 Sharp';
+        --fa-font-sharp-regular: normal 400 1em/1 'Font Awesome 6 Sharp';
+        --fa-font-sharp-light: normal 300 1em/1 'Font Awesome 6 Sharp';
+        --fa-font-brands: normal 400 1em/1 'Font Awesome 6 Brands';
+      }
+
+      svg:not(:root).svg-inline--fa,
+      svg:not(:host).svg-inline--fa {
+        overflow: visible;
+        box-sizing: content-box;
+      }
+
+      .svg-inline--fa {
+        display: var(--fa-display, inline-block);
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
+      }
+      .svg-inline--fa.fa-2xs {
+        vertical-align: 0.1em;
+      }
+      .svg-inline--fa.fa-xs {
+        vertical-align: 0em;
+      }
+      .svg-inline--fa.fa-sm {
+        vertical-align: -0.0714285705em;
+      }
+      .svg-inline--fa.fa-lg {
+        vertical-align: -0.2em;
+      }
+      .svg-inline--fa.fa-xl {
+        vertical-align: -0.25em;
+      }
+      .svg-inline--fa.fa-2xl {
+        vertical-align: -0.3125em;
+      }
+      .svg-inline--fa.fa-pull-left {
+        margin-right: var(--fa-pull-margin, 0.3em);
+        width: auto;
+      }
+      .svg-inline--fa.fa-pull-right {
+        margin-left: var(--fa-pull-margin, 0.3em);
+        width: auto;
+      }
+      .svg-inline--fa.fa-li {
+        width: var(--fa-li-width, 2em);
+        top: 0.25em;
+      }
+      .svg-inline--fa.fa-fw {
+        width: var(--fa-fw-width, 1.25em);
+      }
+
+      .fa-layers svg.svg-inline--fa {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .fa-layers-counter,
+      .fa-layers-text {
+        display: inline-block;
+        position: absolute;
+        text-align: center;
+      }
+
+      .fa-layers {
+        display: inline-block;
+        height: 1em;
+        position: relative;
+        text-align: center;
+        vertical-align: -0.125em;
+        width: 1em;
+      }
+      .fa-layers svg.svg-inline--fa {
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+      }
+
+      .fa-layers-text {
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+      }
+
+      .fa-layers-counter {
+        background-color: var(--fa-counter-background-color, #ff253a);
+        border-radius: var(--fa-counter-border-radius, 1em);
+        box-sizing: border-box;
+        color: var(--fa-inverse, #fff);
+        line-height: var(--fa-counter-line-height, 1);
+        max-width: var(--fa-counter-max-width, 5em);
+        min-width: var(--fa-counter-min-width, 1.5em);
+        overflow: hidden;
+        padding: var(--fa-counter-padding, 0.25em 0.5em);
+        right: var(--fa-right, 0);
+        text-overflow: ellipsis;
+        top: var(--fa-top, 0);
+        -webkit-transform: scale(var(--fa-counter-scale, 0.25));
+        transform: scale(var(--fa-counter-scale, 0.25));
+        -webkit-transform-origin: top right;
+        transform-origin: top right;
+      }
+
+      .fa-layers-bottom-right {
+        bottom: var(--fa-bottom, 0);
+        right: var(--fa-right, 0);
+        top: auto;
+        -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+        transform: scale(var(--fa-layers-scale, 0.25));
+        -webkit-transform-origin: bottom right;
+        transform-origin: bottom right;
+      }
+
+      .fa-layers-bottom-left {
+        bottom: var(--fa-bottom, 0);
+        left: var(--fa-left, 0);
+        right: auto;
+        top: auto;
+        -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+        transform: scale(var(--fa-layers-scale, 0.25));
+        -webkit-transform-origin: bottom left;
+        transform-origin: bottom left;
+      }
+
+      .fa-layers-top-right {
+        top: var(--fa-top, 0);
+        right: var(--fa-right, 0);
+        -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+        transform: scale(var(--fa-layers-scale, 0.25));
+        -webkit-transform-origin: top right;
+        transform-origin: top right;
+      }
+
+      .fa-layers-top-left {
+        left: var(--fa-left, 0);
+        right: auto;
+        top: var(--fa-top, 0);
+        -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+        transform: scale(var(--fa-layers-scale, 0.25));
+        -webkit-transform-origin: top left;
+        transform-origin: top left;
+      }
+
+      .fa-1x {
+        font-size: 1em;
+      }
+
+      .fa-2x {
+        font-size: 2em;
+      }
+
+      .fa-3x {
+        font-size: 3em;
+      }
+
+      .fa-4x {
+        font-size: 4em;
+      }
+
+      .fa-5x {
+        font-size: 5em;
+      }
+
+      .fa-6x {
+        font-size: 6em;
+      }
+
+      .fa-7x {
+        font-size: 7em;
+      }
+
+      .fa-8x {
+        font-size: 8em;
+      }
+
+      .fa-9x {
+        font-size: 9em;
+      }
+
+      .fa-10x {
+        font-size: 10em;
+      }
+
+      .fa-2xs {
+        font-size: 0.625em;
+        line-height: 0.1em;
+        vertical-align: 0.225em;
+      }
+
+      .fa-xs {
+        font-size: 0.75em;
+        line-height: 0.0833333337em;
+        vertical-align: 0.125em;
+      }
+
+      .fa-sm {
+        font-size: 0.875em;
+        line-height: 0.0714285718em;
+        vertical-align: 0.0535714295em;
+      }
+
+      .fa-lg {
+        font-size: 1.25em;
+        line-height: 0.05em;
+        vertical-align: -0.075em;
+      }
+
+      .fa-xl {
+        font-size: 1.5em;
+        line-height: 0.0416666682em;
+        vertical-align: -0.125em;
+      }
+
+      .fa-2xl {
+        font-size: 2em;
+        line-height: 0.03125em;
+        vertical-align: -0.1875em;
+      }
+
+      .fa-fw {
+        text-align: center;
+        width: 1.25em;
+      }
+
+      .fa-ul {
+        list-style-type: none;
+        margin-left: var(--fa-li-margin, 2.5em);
+        padding-left: 0;
+      }
+      .fa-ul > li {
+        position: relative;
+      }
+
+      .fa-li {
+        left: calc(var(--fa-li-width, 2em) * -1);
+        position: absolute;
+        text-align: center;
+        width: var(--fa-li-width, 2em);
+        line-height: inherit;
+      }
+
+      .fa-border {
+        border-color: var(--fa-border-color, #eee);
+        border-radius: var(--fa-border-radius, 0.1em);
+        border-style: var(--fa-border-style, solid);
+        border-width: var(--fa-border-width, 0.08em);
+        padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+      }
+
+      .fa-pull-left {
+        float: left;
+        margin-right: var(--fa-pull-margin, 0.3em);
+      }
+
+      .fa-pull-right {
+        float: right;
+        margin-left: var(--fa-pull-margin, 0.3em);
+      }
+
+      .fa-beat {
+        -webkit-animation-name: fa-beat;
+        animation-name: fa-beat;
+        -webkit-animation-delay: var(--fa-animation-delay, 0s);
+        animation-delay: var(--fa-animation-delay, 0s);
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 1s);
+        animation-duration: var(--fa-animation-duration, 1s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+        animation-timing-function: var(--fa-animation-timing, ease-in-out);
+      }
+
+      .fa-bounce {
+        -webkit-animation-name: fa-bounce;
+        animation-name: fa-bounce;
+        -webkit-animation-delay: var(--fa-animation-delay, 0s);
+        animation-delay: var(--fa-animation-delay, 0s);
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 1s);
+        animation-duration: var(--fa-animation-duration, 1s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+      }
+
+      .fa-fade {
+        -webkit-animation-name: fa-fade;
+        animation-name: fa-fade;
+        -webkit-animation-delay: var(--fa-animation-delay, 0s);
+        animation-delay: var(--fa-animation-delay, 0s);
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 1s);
+        animation-duration: var(--fa-animation-duration, 1s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+      }
+
+      .fa-beat-fade {
+        -webkit-animation-name: fa-beat-fade;
+        animation-name: fa-beat-fade;
+        -webkit-animation-delay: var(--fa-animation-delay, 0s);
+        animation-delay: var(--fa-animation-delay, 0s);
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 1s);
+        animation-duration: var(--fa-animation-duration, 1s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+        animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+      }
+
+      .fa-flip {
+        -webkit-animation-name: fa-flip;
+        animation-name: fa-flip;
+        -webkit-animation-delay: var(--fa-animation-delay, 0s);
+        animation-delay: var(--fa-animation-delay, 0s);
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 1s);
+        animation-duration: var(--fa-animation-duration, 1s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+        animation-timing-function: var(--fa-animation-timing, ease-in-out);
+      }
+
+      .fa-shake {
+        -webkit-animation-name: fa-shake;
+        animation-name: fa-shake;
+        -webkit-animation-delay: var(--fa-animation-delay, 0s);
+        animation-delay: var(--fa-animation-delay, 0s);
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 1s);
+        animation-duration: var(--fa-animation-duration, 1s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+        animation-timing-function: var(--fa-animation-timing, linear);
+      }
+
+      .fa-spin {
+        -webkit-animation-name: fa-spin;
+        animation-name: fa-spin;
+        -webkit-animation-delay: var(--fa-animation-delay, 0s);
+        animation-delay: var(--fa-animation-delay, 0s);
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 2s);
+        animation-duration: var(--fa-animation-duration, 2s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+        animation-timing-function: var(--fa-animation-timing, linear);
+      }
+
+      .fa-spin-reverse {
+        --fa-animation-direction: reverse;
+      }
+
+      .fa-pulse,
+      .fa-spin-pulse {
+        -webkit-animation-name: fa-spin;
+        animation-name: fa-spin;
+        -webkit-animation-direction: var(--fa-animation-direction, normal);
+        animation-direction: var(--fa-animation-direction, normal);
+        -webkit-animation-duration: var(--fa-animation-duration, 1s);
+        animation-duration: var(--fa-animation-duration, 1s);
+        -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+        -webkit-animation-timing-function: var(--fa-animation-timing, steps(8));
+        animation-timing-function: var(--fa-animation-timing, steps(8));
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .fa-beat,
+        .fa-bounce,
+        .fa-fade,
+        .fa-beat-fade,
+        .fa-flip,
+        .fa-pulse,
+        .fa-shake,
+        .fa-spin,
+        .fa-spin-pulse {
+          -webkit-animation-delay: -1ms;
+          animation-delay: -1ms;
+          -webkit-animation-duration: 1ms;
+          animation-duration: 1ms;
+          -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+          -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+          -webkit-transition-duration: 0s;
+          transition-duration: 0s;
+        }
+      }
+      @-webkit-keyframes fa-beat {
+        0%,
+        90% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        45% {
+          -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+          transform: scale(var(--fa-beat-scale, 1.25));
+        }
+      }
+      @keyframes fa-beat {
+        0%,
+        90% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        45% {
+          -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+          transform: scale(var(--fa-beat-scale, 1.25));
+        }
+      }
+      @-webkit-keyframes fa-bounce {
+        0% {
+          -webkit-transform: scale(1, 1) translateY(0);
+          transform: scale(1, 1) translateY(0);
+        }
+        10% {
+          -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+          transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+        }
+        30% {
+          -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1))
+            translateY(var(--fa-bounce-height, -0.5em));
+          transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1))
+            translateY(var(--fa-bounce-height, -0.5em));
+        }
+        50% {
+          -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+          transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+        }
+        57% {
+          -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+          transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+        }
+        64% {
+          -webkit-transform: scale(1, 1) translateY(0);
+          transform: scale(1, 1) translateY(0);
+        }
+        100% {
+          -webkit-transform: scale(1, 1) translateY(0);
+          transform: scale(1, 1) translateY(0);
+        }
+      }
+      @keyframes fa-bounce {
+        0% {
+          -webkit-transform: scale(1, 1) translateY(0);
+          transform: scale(1, 1) translateY(0);
+        }
+        10% {
+          -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+          transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+        }
+        30% {
+          -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1))
+            translateY(var(--fa-bounce-height, -0.5em));
+          transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1))
+            translateY(var(--fa-bounce-height, -0.5em));
+        }
+        50% {
+          -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+          transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+        }
+        57% {
+          -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+          transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+        }
+        64% {
+          -webkit-transform: scale(1, 1) translateY(0);
+          transform: scale(1, 1) translateY(0);
+        }
+        100% {
+          -webkit-transform: scale(1, 1) translateY(0);
+          transform: scale(1, 1) translateY(0);
+        }
+      }
+      @-webkit-keyframes fa-fade {
+        50% {
+          opacity: var(--fa-fade-opacity, 0.4);
+        }
+      }
+      @keyframes fa-fade {
+        50% {
+          opacity: var(--fa-fade-opacity, 0.4);
+        }
+      }
+      @-webkit-keyframes fa-beat-fade {
+        0%,
+        100% {
+          opacity: var(--fa-beat-fade-opacity, 0.4);
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+          transform: scale(var(--fa-beat-fade-scale, 1.125));
+        }
+      }
+      @keyframes fa-beat-fade {
+        0%,
+        100% {
+          opacity: var(--fa-beat-fade-opacity, 0.4);
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+          transform: scale(var(--fa-beat-fade-scale, 1.125));
+        }
+      }
+      @-webkit-keyframes fa-flip {
+        50% {
+          -webkit-transform: rotate3d(
+            var(--fa-flip-x, 0),
+            var(--fa-flip-y, 1),
+            var(--fa-flip-z, 0),
+            var(--fa-flip-angle, -180deg)
+          );
+          transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+        }
+      }
+      @keyframes fa-flip {
+        50% {
+          -webkit-transform: rotate3d(
+            var(--fa-flip-x, 0),
+            var(--fa-flip-y, 1),
+            var(--fa-flip-z, 0),
+            var(--fa-flip-angle, -180deg)
+          );
+          transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+        }
+      }
+      @-webkit-keyframes fa-shake {
+        0% {
+          -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+        }
+        4% {
+          -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+        }
+        8%,
+        24% {
+          -webkit-transform: rotate(-18deg);
+          transform: rotate(-18deg);
+        }
+        12%,
+        28% {
+          -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+        }
+        16% {
+          -webkit-transform: rotate(-22deg);
+          transform: rotate(-22deg);
+        }
+        20% {
+          -webkit-transform: rotate(22deg);
+          transform: rotate(22deg);
+        }
+        32% {
+          -webkit-transform: rotate(-12deg);
+          transform: rotate(-12deg);
+        }
+        36% {
+          -webkit-transform: rotate(12deg);
+          transform: rotate(12deg);
+        }
+        40%,
+        100% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+      @keyframes fa-shake {
+        0% {
+          -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+        }
+        4% {
+          -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+        }
+        8%,
+        24% {
+          -webkit-transform: rotate(-18deg);
+          transform: rotate(-18deg);
+        }
+        12%,
+        28% {
+          -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+        }
+        16% {
+          -webkit-transform: rotate(-22deg);
+          transform: rotate(-22deg);
+        }
+        20% {
+          -webkit-transform: rotate(22deg);
+          transform: rotate(22deg);
+        }
+        32% {
+          -webkit-transform: rotate(-12deg);
+          transform: rotate(-12deg);
+        }
+        36% {
+          -webkit-transform: rotate(12deg);
+          transform: rotate(12deg);
+        }
+        40%,
+        100% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+      @-webkit-keyframes fa-spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fa-spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      .fa-rotate-90 {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+
+      .fa-rotate-180 {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+
+      .fa-rotate-270 {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+      }
+
+      .fa-flip-horizontal {
+        -webkit-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+      }
+
+      .fa-flip-vertical {
+        -webkit-transform: scale(1, -1);
+        transform: scale(1, -1);
+      }
+
+      .fa-flip-both,
+      .fa-flip-horizontal.fa-flip-vertical {
+        -webkit-transform: scale(-1, -1);
+        transform: scale(-1, -1);
+      }
+
+      .fa-rotate-by {
+        -webkit-transform: rotate(var(--fa-rotate-angle, none));
+        transform: rotate(var(--fa-rotate-angle, none));
+      }
+
+      .fa-stack {
+        display: inline-block;
+        vertical-align: middle;
+        height: 2em;
+        position: relative;
+        width: 2.5em;
+      }
+
+      .fa-stack-1x,
+      .fa-stack-2x {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: var(--fa-stack-z-index, auto);
+      }
+
+      .svg-inline--fa.fa-stack-1x {
+        height: 1em;
+        width: 1.25em;
+      }
+      .svg-inline--fa.fa-stack-2x {
+        height: 2em;
+        width: 2.5em;
+      }
+
+      .fa-inverse {
+        color: var(--fa-inverse, #fff);
+      }
+
+      .sr-only,
+      .fa-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      .sr-only-focusable:not(:focus),
+      .fa-sr-only-focusable:not(:focus) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      .svg-inline--fa .fa-primary {
+        fill: var(--fa-primary-color, currentColor);
+        opacity: var(--fa-primary-opacity, 1);
+      }
+
+      .svg-inline--fa .fa-secondary {
+        fill: var(--fa-secondary-color, currentColor);
+        opacity: var(--fa-secondary-opacity, 0.4);
+      }
+
+      .svg-inline--fa.fa-swap-opacity .fa-primary {
+        opacity: var(--fa-secondary-opacity, 0.4);
+      }
+
+      .svg-inline--fa.fa-swap-opacity .fa-secondary {
+        opacity: var(--fa-primary-opacity, 1);
+      }
+
+      .svg-inline--fa mask .fa-primary,
+      .svg-inline--fa mask .fa-secondary {
+        fill: black;
+      }
+
+      .fad.fa-inverse,
+      .fa-duotone.fa-inverse {
+        color: var(--fa-inverse, #fff);
+      }
+    </style>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-itunes-app" content="app-id=1438144202, app-argument=/dapp/portfolio.metamask.io" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Primary Meta Tags -->
+    <title>MetaMask Portfolio - Dashboard</title>
+    <meta name="title" content="MetaMask Portfolio" />
+    <meta name="description" content="View and manage your entire Web3 portfolio" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://portfolio.metamask.io" />
+    <meta property="og:title" content="MetaMask Portfolio" />
+    <meta property="og:description" content="View and manage your entire Web3 portfolio" />
+    <meta property="og:image" content="https://portfolio.metamask.io/app_image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="MetaMask Portfolio" />
+    <meta property="twitter:description" content="View and manage your entire Web3 portfolio" />
+    <meta property="twitter:image" content="https://portfolio.metamask.io/app_image.png" />
+    <meta name="twitter:creator" content="@MetaMask" />
+
+    <!-- Segment initialisation -->
+    <script
+      type="text/javascript"
+      async=""
+      src="https://cdn.segment.com/analytics.js/v1/2f64suG6gtrhDVI2rGCUgH9hbfp4NJ12/analytics.min.js"
+    ></script>
+    <script>
+      !(function () {
+        function isProdEnvironment() {
+          return window.location.hostname === 'portfolio.metamask.io';
+        }
+        var SEGMENT_WRITE_KEY = isProdEnvironment() ? '2f64suG6gtrhDVI2rGCUgH9hbfp4NJ12' : 'B2isQyS70f6W76y4IOjlR76iCuevj4Z1';
+        var analytics = (window.analytics = window.analytics || []);
+        if (!analytics.initialize)
+          if (analytics.invoked) window.console && console.error && console.error('Segment snippet included twice.');
+          else {
+            analytics.invoked = !0;
+            analytics.methods = [
+              'trackSubmit',
+              'trackClick',
+              'trackLink',
+              'trackForm',
+              'pageview',
+              'identify',
+              'reset',
+              'group',
+              'track',
+              'ready',
+              'alias',
+              'debug',
+              'page',
+              'once',
+              'off',
+              'on',
+              'addSourceMiddleware',
+              'addIntegrationMiddleware',
+              'setAnonymousId',
+              'addDestinationMiddleware',
+            ];
+            analytics.factory = function (e) {
+              return function () {
+                var t = Array.prototype.slice.call(arguments);
+                t.unshift(e);
+                analytics.push(t);
+                return analytics;
+              };
+            };
+            for (var e = 0; e < analytics.methods.length; e++) {
+              var key = analytics.methods[e];
+              analytics[key] = analytics.factory(key);
+            }
+            analytics.load = function (key, e) {
+              var t = document.createElement('script');
+              t.type = 'text/javascript';
+              t.async = !0;
+              t.src = 'https://cdn.segment.com/analytics.js/v1/' + key + '/analytics.min.js';
+              var n = document.getElementsByTagName('script')[0];
+              n.parentNode.insertBefore(t, n);
+              analytics._loadOptions = e;
+            };
+            analytics._writeKey = SEGMENT_WRITE_KEY;
+            analytics.SNIPPET_VERSION = '4.15.3';
+            analytics.load(SEGMENT_WRITE_KEY);
+          }
+      })();
+    </script>
+
+    <!-- BEGIN LivePerson Monitor. -->
+    <script async="" defer="" type="text/javascript">
+      (window.lpTag = window.lpTag || {}),
+        'undefined' == typeof window.lpTag._tagCount
+          ? ((window.lpTag = {
+              wl: lpTag.wl || null,
+              scp: lpTag.scp || null,
+              site: '88982875' || '',
+              section: lpTag.section || '',
+              tagletSection: lpTag.tagletSection || null,
+              autoStart: lpTag.autoStart !== !1,
+              ovr: lpTag.ovr || {},
+              _v: '1.10.0',
+              _tagCount: 1,
+              protocol: 'https:',
+              events: {
+                bind: function (t, e, i) {
+                  lpTag.defer(function () {
+                    lpTag.events.bind(t, e, i);
+                  }, 0);
+                },
+                trigger: function (t, e, i) {
+                  lpTag.defer(function () {
+                    lpTag.events.trigger(t, e, i);
+                  }, 1);
+                },
+              },
+              defer: function (t, e) {
+                0 === e
+                  ? ((this._defB = this._defB || []), this._defB.push(t))
+                  : 1 === e
+                  ? ((this._defT = this._defT || []), this._defT.push(t))
+                  : ((this._defL = this._defL || []), this._defL.push(t));
+              },
+              load: function (t, e, i) {
+                var n = this;
+                setTimeout(function () {
+                  n._load(t, e, i);
+                }, 0);
+              },
+              _load: function (t, e, i) {
+                var n = t;
+                t ||
+                  (n =
+                    this.protocol +
+                    '//' +
+                    (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') +
+                    '/tag/tag.js?site=' +
+                    this.site);
+                var o = document.createElement('script');
+                o.setAttribute('charset', e ? e : 'UTF-8'),
+                  i && o.setAttribute('id', i),
+                  o.setAttribute('src', n),
+                  document.getElementsByTagName('head').item(0).appendChild(o);
+              },
+              init: function () {
+                (this._timing = this._timing || {}), (this._timing.start = new Date().getTime());
+                var t = this;
+                window.attachEvent
+                  ? window.attachEvent('onload', function () {
+                      t._domReady('domReady');
+                    })
+                  : (window.addEventListener(
+                      'DOMContentLoaded',
+                      function () {
+                        t._domReady('contReady');
+                      },
+                      !1,
+                    ),
+                    window.addEventListener(
+                      'load',
+                      function () {
+                        t._domReady('domReady');
+                      },
+                      !1,
+                    )),
+                  'undefined' === typeof window._lptStop && this.load();
+              },
+              start: function () {
+                this.autoStart = !0;
+              },
+              _domReady: function (t) {
+                this.isDom || ((this.isDom = !0), this.events.trigger('LPT', 'DOM_READY', { t: t })),
+                  (this._timing[t] = new Date().getTime());
+              },
+              vars: lpTag.vars || [],
+              dbs: lpTag.dbs || [],
+              ctn: lpTag.ctn || [],
+              sdes: lpTag.sdes || [],
+              hooks: lpTag.hooks || [],
+              identities: lpTag.identities || [],
+              ev: lpTag.ev || [],
+            }),
+            lpTag.init())
+          : (window.lpTag._tagCount += 1);
+    </script>
+    <!-- END LivePerson Monitor. -->
+    <script type="module" crossorigin="" src="/assets/index-785ec426.js"></script>
+    <script charset="UTF-8" src="https://lptag.liveperson.net/tag/tag.js?site=88982875"></script>
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/bootstrap-72743046.js" />
+    <link rel="stylesheet" href="/assets/bootstrap-38cbfc99.css" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/index-7fdbd93c.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/AccountsMultiSelectDropdown-63baed39.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/BalanceConversionText-fa5cc907.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/useSortTableData-80b17aa7.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/LoadingPulseSkeleton-f306a567.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/toFinite-820f1f41.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/groupBy-d59f14b7.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/arrow-up-right-c002f5e5.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/AccountsMoreMenu-5e2248b7.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/index-785ec426.js" />
+    <meta charset="utf-8" data-react-helmet="true" />
+    <meta
+      name="description"
+      content="View your cryptocurrency portfolio and its current value on the Metamask Portfolio."
+      data-react-helmet="true"
+    />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/buyRoutes-f1f6018b.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/Maintenance-f075c1c3.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/SupportedRegionLayout-cd0f767a.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/faChevronDown-c389abda.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/react-number-format.es-8eac66a2.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/sellRoutes-6b4c9d2e.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/useSwitchToNetwork-cf689f07.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/useEthGasFee-b1757257.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/index-dd284186.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/useRedirectFeatureFlag-213e3ec9.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/SwapElement-c39d2670.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/index-2d0bd194.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/SwitchNetworkWarning-e2403158.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/index-23afef90.js" />
+    <link rel="modulepreload" as="script" crossorigin="" href="/assets/TokenDetail-86a65404.js" />
+    <script
+      charset="UTF-8"
+      id="_lpTagScriptId_0"
+      src="https://lptag.liveperson.net/lptag/api/account/88982875/configuration/applications/taglets/.jsonp?v=2.0&amp;df=undefined&amp;b=undefined"
+    ></script>
+    <style data-react-tooltip="true">
+      .__react_component_tooltip {
+        border-radius: 3px;
+        display: inline-block;
+        font-size: 13px;
+        left: -999em;
+        opacity: 0;
+        padding: 8px 21px;
+        position: fixed;
+        pointer-events: none;
+        transition: opacity 0.3s ease-out;
+        top: -999em;
+        visibility: hidden;
+        z-index: 999;
+      }
+      .__react_component_tooltip.allow_hover,
+      .__react_component_tooltip.allow_click {
+        pointer-events: auto;
+      }
+      .__react_component_tooltip::before,
+      .__react_component_tooltip::after {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+      .__react_component_tooltip.show {
+        opacity: 0.9;
+        margin-top: 0;
+        margin-left: 0;
+        visibility: visible;
+      }
+      .__react_component_tooltip.place-top::before {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        bottom: -8px;
+        left: 50%;
+        margin-left: -10px;
+      }
+      .__react_component_tooltip.place-bottom::before {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        top: -8px;
+        left: 50%;
+        margin-left: -10px;
+      }
+      .__react_component_tooltip.place-left::before {
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        right: -8px;
+        top: 50%;
+        margin-top: -5px;
+      }
+      .__react_component_tooltip.place-right::before {
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        left: -8px;
+        top: 50%;
+        margin-top: -5px;
+      }
+      .__react_component_tooltip .multi-line {
+        display: block;
+        padding: 2px 0;
+        text-align: center;
+      }
+    </style>
+    <style type="text/css" nonce="ade130c1096e" media="print">
+      .usabilla_live_button_container {
+        display: none;
+      }
+    </style>
+    <style type="text/css" nonce="ade130c1096e">
+      iframe.usabilla-live-button#usabilla_live_button_container_iframe807868493 {
+        width: 40px;
+        height: 135px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        overflow: hidden;
+        z-index: 9998;
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-shadow: 0 0 0;
+        background-color: transparent;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="https://lpcdn.lpsnmedia.net/le_re/3.57.1.0-release_5199/jsv2/overlay.js?_v=3.57.1.0-release_5199"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="https://lpcdn.lpsnmedia.net/le_re/3.57.1.0-release_5199/jsv2/UISuite.js?_v=3.57.1.0-release_5199"
+    ></script>
+  </head>
+
+  <body data-new-gr-c-s-check-loaded="14.1132.0" data-gr-ext-installed="">
+    <div id="lightningjs-usabilla_live" style="display: none">
+      <div><iframe frameborder="0" id="lightningjs-frame-usabilla_live"></iframe></div>
+    </div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div>
+        <div class="min-h-full bg-default flex relative max-h-screen">
+          <div
+            id="desktop-nav-sidebar"
+            class="group hidden md:flex md:flex-col h-screen py-5 pt-8 bg-surface-default transition-all duration-700 ease-in-out relative md:w-40 lg:w-52"
+          >
+            <div class="flex-shrink-0 flex items-center px-4">
+              <a class="outline-none" href="/"
+                ><img class="h-8 w-auto dark:hidden outline-none" src="/assets/portfolio-logo-b0c23761.svg" alt="MetaMask" /><img
+                  class="h-8 w-auto hidden dark:flex outline-none"
+                  src="/assets/portfolio-logo-dark-34c7653e.svg"
+                  alt="MetaMask"
+              /></a>
+            </div>
+            <div
+              role="button"
+              tabindex="0"
+              class="group-hover:flex absolute hidden h-5 hover:stroke-white stroke-black hover:bg-midnight-primary items-center rounded-full w-5 justify-center right-0 -mr-2.5 bg-surface-default dark:bg-portfolio-slateGray-400 dark:border dark:hover:border-midnight-primary border-default dark:stroke-white dark:hover:bg-midnight-primary z-50 -mt-2"
+              style="box-shadow: rgba(80, 81, 106, 0.2) 0px 1px 4px"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" class="" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 5L6 8L9 11" stroke-width="0.916667" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <div class="mt-6 flex flex-col overflow-y-auto h-full">
+              <nav class="mt-8">
+                <div class="space-y-3">
+                  <a
+                    id="sidebar-item-Dashboard"
+                    aria-current="page"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-midnight-primary dark:text-white font-semibold"
+                    href="/"
+                    ><div class="hidden md:inline-block h-6 w-0.5 bg-midnight-primary absolute right-0"></div>
+                    <div class="flex justify-center items-center mr-2">
+                      <svg
+                        class="h-5 w-5 stroke-midnight-primary"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10 10L17.5 10M10 2.5L10 17.5M6.5 2.5H13.5C14.9001 2.5 15.6002 2.5 16.135 2.77248C16.6054 3.01217 16.9878 3.39462 17.2275 3.86502C17.5 4.3998 17.5 5.09987 17.5 6.5V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V6.5C2.5 5.09987 2.5 4.3998 2.77248 3.86502C3.01217 3.39462 3.39462 3.01217 3.86502 2.77248C4.3998 2.5 5.09987 2.5 6.5 2.5Z"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </svg>
+                    </div>
+                    <span class="truncate">Dashboard</span></a
+                  ><a
+                    id="sidebar-item-Buy"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/buy"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-5 w-5 text-subdued"
+                      >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                      </svg>
+                    </div>
+                    <span class="truncate">Buy</span></a
+                  ><a
+                    id="sidebar-item-Sell"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/sell"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-5 w-5 text-subdued"
+                      >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                      </svg>
+                    </div>
+                    <span class="truncate">Sell</span></a
+                  ><a
+                    id="sidebar-item-Swap"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/swap"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-5 w-5 text-subdued"
+                      >
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <polyline points="1 20 1 14 7 14"></polyline>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                      </svg>
+                    </div>
+                    <span class="truncate">Swap</span></a
+                  ><a
+                    id="sidebar-item-Bridge"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/bridge"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M2.88583 11.0961C2.08173 11.3553 1.5 12.1097 1.5 13C1.5 14.1046 2.39543 15 3.5 15C4.60457 15 5.5 14.1046 5.5 13C5.5 12.2172 5.05025 11.5394 4.39505 11.211C4.98024 8.65597 7.26754 6.75 10 6.75C11.8379 6.75 13.4744 7.61231 14.5271 8.95443C14.9983 8.7242 15.5157 8.57388 16.0616 8.52109C14.7656 6.55072 12.5347 5.25 10 5.25C6.47625 5.25 3.53966 7.7639 2.88583 11.0961ZM18.5 13C18.5 14.1046 17.6046 15 16.5 15C15.3954 15 14.5 14.1046 14.5 13C14.5 11.8954 15.3954 11 16.5 11C17.6046 11 18.5 11.8954 18.5 13Z"
+                          class="fill-icon-subdued"
+                        ></path>
+                      </svg>
+                    </div>
+                    <span class="truncate">Bridge</span></a
+                  ><a
+                    id="sidebar-item-Stake"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/stake"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        class="h-5 w-5 stroke-icon-subdued"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clip-path="url(#clip0_735_24127)">
+                          <path
+                            d="M3.99902 19C7.24796 17.5 8.87242 16.75 10.4969 16.75M16.9948 19C13.7458 17.5 12.1214 16.75 10.4969 16.75M10.4969 16.75V11.5M10.4969 11.5L10 10.4091M10.4969 11.5V9.5L10.9967 8.5M10 10.4091C10 10.4091 5.00889 11.0985 2.99935 9.5C1.29118 8.14126 1 4.5 1 4.5C1 4.5 5.55008 3.95155 7.54545 5.90909C8.91802 7.25563 10 10.4091 10 10.4091ZM10.9967 8.5C10.9967 8.5 11.5374 4.11404 13.4959 2.5C15.2137 1.08439 18.9941 1 18.9941 1C18.9941 1 19.1777 5.2683 17.4946 7C15.6792 8.86783 10.9967 8.5 10.9967 8.5Z"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                          ></path>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_735_24127"><rect width="20" height="20" fill="white"></rect></clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <span class="truncate">Stake</span></a
+                  ><a
+                    id="sidebar-item-Send &amp; Receive"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/send"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-5 w-5 text-subdued"
+                      >
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                      </svg>
+                    </div>
+                    <span class="truncate">Send &amp; Receive</span></a
+                  ><a
+                    id="sidebar-item-Watchlist"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/watchlist"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-5 w-5 text-subdued"
+                      >
+                        <polygon
+                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                        ></polygon>
+                      </svg>
+                    </div>
+                    <span class="truncate">Watchlist</span></a
+                  >
+                </div>
+              </nav>
+              <div class="flex flex-1 mt-3">
+                <div class="w-full">
+                  <a
+                    id="sidebar-item-Settings"
+                    class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                    href="/settings"
+                    ><div class="flex justify-center items-center mr-2">
+                      <svg
+                        class="h-5 w-5 stroke-icon-subdued"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16.8003 5.59272L10.4167 1.90718C10.1589 1.75832 9.84125 1.75832 9.58341 1.90718L3.19987 5.59272C2.94204 5.74158 2.7832 6.01669 2.7832 6.31441V13.6855C2.7832 13.9832 2.94204 14.2583 3.19987 14.4072L9.58342 18.0927C9.84125 18.2416 10.1589 18.2416 10.4167 18.0927L16.8003 14.4072C17.0581 14.2583 17.217 13.9832 17.217 13.6855V6.31441C17.217 6.01669 17.0581 5.74158 16.8003 5.59272Z"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                        <path
+                          d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </svg>
+                    </div>
+                    <span class="truncate">Settings</span></a
+                  >
+                </div>
+              </div>
+              <div class="space-y-6 mb-8">
+                <div>
+                  <div class="mt-3 relative hover:bg-surface-subdued hidden">
+                    <a
+                      href="https://support.metamask.io"
+                      target="_blank"
+                      class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-5 w-5 text-subdued flex justify-center items-center mr-2"
+                      >
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg
+                      ><span class="truncate">Support</span></a
+                    >
+                    <div id="LP_LIVECHAT_BUTTON" data-lp-event="click">
+                      <div
+                        id="LPMcontainer-1697654992563-0"
+                        class="LPMcontainer LPMoverlay"
+                        style="
+                          margin: 1px;
+                          padding: 0px;
+                          border-style: solid;
+                          border-width: 0px;
+                          font-style: normal;
+                          font-weight: normal;
+                          font-variant: normal;
+                          list-style: outside none none;
+                          letter-spacing: normal;
+                          line-height: normal;
+                          text-decoration: none;
+                          vertical-align: baseline;
+                          white-space: normal;
+                          word-spacing: normal;
+                          background-repeat: repeat-x;
+                          background-position: left bottom;
+                          cursor: auto;
+                          display: block;
+                          position: relative;
+                          top: 0px;
+                          left: 0px;
+                        "
+                      >
+                        <div id="LP_LIVECHAT_BUTTON" data-lp-event="click"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued mt-3 w-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="flex justify-center items-center h-5 w-5 text-subdued mr-2"
+                    >
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline></svg
+                    ><span class="truncate">Give Feedback</span>
+                  </button>
+                  <div class="mt-3 w-full">
+                    <a
+                      href="https://metamask.zendesk.com/hc/en-us/sections/8324102004763"
+                      target="_blank"
+                      class="group flex items-center px-4 py-2 hover:bg-surface-subdued relative text-subdued"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-5 w-5 text-subdued flex justify-center items-center mr-2"
+                      >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line></svg
+                      ><span class="truncate">FAQ</span></a
+                    >
+                  </div>
+                </div>
+                <div class="flex ml-4">
+                  <div id="theme-toggle" class="flex">
+                    <button
+                      class="items-center relative inline-flex flex-shrink-0 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 dark:bg-surface-subdued bg-midnight-primary h-6 w-12"
+                      aria-label="Switch theme"
+                      id="headlessui-switch-:r0:"
+                      role="switch"
+                      type="button"
+                      tabindex="0"
+                      aria-checked="false"
+                      data-headlessui-state=""
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="pointer-events-none flex items-center justify-center rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200 translate-x-0 h-5 w-5"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          class="fill-icon-subdued !fill-midnight-primary"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7 0C7.46392 0 7.84 0.376081 7.84 0.84V1.96C7.84 2.42392 7.46392 2.8 7 2.8C6.53609 2.8 6.16 2.42392 6.16 1.96V0.84C6.16 0.376081 6.53609 0 7 0Z"
+                          ></path>
+                          <path
+                            d="M7 9.8C8.54639 9.8 9.79999 8.5464 9.79999 7C9.79999 5.4536 8.54639 4.2 7 4.2C5.4536 4.2 4.2 5.4536 4.2 7C4.2 8.5464 5.4536 9.8 7 9.8Z"
+                          ></path>
+                          <path
+                            d="M7.84 12.04C7.84 11.5761 7.46392 11.2 7 11.2C6.53609 11.2 6.16 11.5761 6.16 12.04V13.16C6.16 13.6239 6.53609 14 7 14C7.46392 14 7.84 13.6239 7.84 13.16V12.04Z"
+                          ></path>
+                          <path
+                            d="M2.04923 2.04923C2.37727 1.72119 2.90913 1.72119 3.23717 2.04923L4.03237 2.84443C4.36041 3.17247 4.36041 3.70433 4.03237 4.03237C3.70433 4.36041 3.17247 4.36041 2.84443 4.03237L2.04923 3.23717C1.72119 2.90913 1.72119 2.37727 2.04923 2.04923Z"
+                          ></path>
+                          <path
+                            d="M11.1556 9.96763C10.8275 9.63959 10.2957 9.63959 9.96762 9.96763C9.63958 10.2957 9.63958 10.8275 9.96762 11.1556L10.7628 11.9508C11.0909 12.2788 11.6227 12.2788 11.9508 11.9508C12.2788 11.6227 12.2788 11.0909 11.9508 10.7628L11.1556 9.96763Z"
+                          ></path>
+                          <path
+                            d="M0 7C0 6.53608 0.376081 6.16 0.839999 6.16H1.96C2.42392 6.16 2.8 6.53608 2.8 7C2.8 7.46392 2.42392 7.84 1.96 7.84H0.839999C0.376081 7.84 0 7.46392 0 7Z"
+                          ></path>
+                          <path
+                            d="M12.04 6.16C11.5761 6.16 11.2 6.53608 11.2 7C11.2 7.46392 11.5761 7.84 12.04 7.84H13.16C13.6239 7.84 14 7.46392 14 7C14 6.53608 13.6239 6.16 13.16 6.16H12.04Z"
+                          ></path>
+                          <path
+                            d="M4.03237 9.96763C4.36041 10.2957 4.36041 10.8275 4.03237 11.1556L3.23717 11.9508C2.90913 12.2788 2.37727 12.2788 2.04923 11.9508C1.72119 11.6227 1.72119 11.0909 2.04923 10.7628L2.84443 9.96763C3.17247 9.63959 3.70433 9.63959 4.03237 9.96763Z"
+                          ></path>
+                          <path
+                            d="M11.9508 3.23717C12.2788 2.90913 12.2788 2.37727 11.9508 2.04923C11.6227 1.72119 11.0909 1.72119 10.7628 2.04923L9.96762 2.84443C9.63958 3.17247 9.63958 3.70433 9.96762 4.03237C10.2957 4.36041 10.8275 4.36041 11.1556 4.03237L11.9508 3.23717Z"
+                          ></path></svg
+                        ><svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          class="fill-icon-subdued !fill-white hidden"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M2 8C2 4.13125 5.0091 1 8.71422 1C9.05503 1 9.60525 1.05212 9.94126 1.11706C10.2298 1.17259 10.2938 1.57425 10.0396 1.72456C8.39021 2.70312 7.37618 4.51875 7.37618 6.49375C7.37618 9.92188 10.3676 12.525 13.6254 11.8781C13.9122 11.8217 14.1138 12.1695 13.9287 12.4078C12.6774 14.0187 10.7843 15 8.71422 15C5.0031 15 2 11.8625 2 8Z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a
+              id="terms-of-service-desktop"
+              target="_blank"
+              href="https://metamask.io/terms.html"
+              class="py-4 -mb-5 border-t border-subdued flex text-subdued cursor-pointer items-center hover:bg-surface-subdued px-6"
+              ><div class="font-medium text-sm mr-2">Terms of service</div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-4"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line></svg
+            ></a>
+          </div>
+          <div id="desktop-main-content" class="flex flex-col min-h-screen w-full overflow-y-auto relative">
+            <div class="md:hidden flex justify-between lg:justify-start top-0 z-10 flex-shrink-0 h-16 sm:h-20 bg-surface-default">
+              <button type="button" class="px-4 sm:px-6 text-slate-600 lg:hidden" aria-label="Menu">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-6 w-6 dark:text-white"
+                >
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+              </button>
+              <div class="mx-4 sm:mx-6 items-center hidden lg:flex pl-1">
+                <div id="token-search-dropdown">
+                  <div class="relative">
+                    <div class="relative w-full">
+                      <div class="absolute ml-4 flex items-center h-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="h-4 w-4 text-slate-500 dark:text-slate-400"
+                        >
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                      </div>
+                      <input
+                        class="bg-inherit border border-default px-4 w-full pl-10 py-2.5 md:w-72 transition-transform duration-500 rounded-full"
+                        placeholder="Search for a token..."
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center flex-shrink-0 px-2 lg:hidden">
+                <a href="/"
+                  ><img
+                    class="h-8 w-auto dark:hidden outline-none"
+                    src="/assets/portfolio-logo-b0c23761.svg"
+                    alt="MetaMask" /><img
+                    class="h-8 w-auto hidden dark:flex outline-none"
+                    src="/assets/portfolio-logo-dark-34c7653e.svg"
+                    alt="MetaMask"
+                /></a>
+              </div>
+              <div class="mx-6 flex gap-3 items-center lg:hidden text-slate-600 text-xl">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="cursor-pointer h-5 w-5 dark:text-white"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <div id="notifications-mobile-button">
+                  <button
+                    class="cursor-pointer disabled:cursor-auto transition text-sm rounded-full border flex items-center justify-center text-center border-transparent bg-inherit text-default hover:bg-surface-subdued p-0"
+                    aria-label="Show Notifications"
+                  >
+                    <div class="relative isolate leading-none">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="far"
+                        data-icon="bell"
+                        class="svg-inline--fa fa-bell fa-fw w-5 h-5"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="hidden lg:flex flex-1 justify-end px-5 sm:px-6 lg:px-7">
+                <div class="flex items-center">
+                  <div id="gas-dropdown" class="relative">
+                    <button
+                      class="space-x-2 text-sm rounded-full inline-flex justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group px-3.5 py-1.5 sm:py-2"
+                      aria-label="Gas dropdown"
+                    >
+                      <div class="flex items-center truncate flex-1 !overflow-visible">
+                        <div class="relative">
+                          <img
+                            class="w-3 h-3 -ml-1.5 mt-2.5 rounded-full object-cover absolute ring-slate-100 dark:ring-slate-700 ring-1"
+                            src="https://token.metaswap.codefi.network/assets/networkLogos/ethereum.svg"
+                            alt=""
+                          /><svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fas"
+                            data-icon="gas-pump"
+                            class="svg-inline--fa fa-gas-pump"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M32 64C32 28.7 60.7 0 96 0H256c35.3 0 64 28.7 64 64V256h8c48.6 0 88 39.4 88 88v32c0 13.3 10.7 24 24 24s24-10.7 24-24V222c-27.6-7.1-48-32.2-48-62V96L384 64c-8.8-8.8-8.8-23.2 0-32s23.2-8.8 32 0l77.3 77.3c12 12 18.7 28.3 18.7 45.3V168v24 32V376c0 39.8-32.2 72-72 72s-72-32.2-72-72V344c0-22.1-17.9-40-40-40h-8V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64zM96 80v96c0 8.8 7.2 16 16 16H240c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16z"
+                            ></path>
+                          </svg>
+                        </div>
+                        <span class="hidden lg:flex ml-2">15</span>
+                      </div>
+                      <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <main class="flex-1 md:mx-4 my-4 lg:mx-8 lg:my-0 isolate">
+              <div id="page-card" class="pb-10">
+                <div class="bg-default px-4 pb-10 sm:px-10 sm:pt-8 sm:pb-12 lg:px-4">
+                  <div
+                    id="page-header"
+                    class="relative flex justify-between pb-4 md:pb-9 border-b md:border-b-0 dark:border-slate-700 -mx-4 px-4 items-center"
+                  >
+                    <div class="flex justify-start w-full md:w-max md:flex-col md:space-y-2 space-x-3 md:space-x-0 flex-1">
+                      <div class="flex w-full justify-between md:justify-start items-center md:space-x-4 whitespace-nowrap">
+                        <h3 class="text-xl sm:text-2xl text-default font-bold">Dashboard</h3>
+                        <div class=""></div>
+                      </div>
+                    </div>
+                    <div
+                      id="global-page-actions"
+                      class="hidden md:flex top-1 right-0 md:top-auto md:right-auto items-center justify-end sm:space-x-3"
+                    >
+                      <div class="hidden lg:flex">
+                        <div id="token-search-dropdown" class="text-sm py-0">
+                          <div class="relative">
+                            <div class="relative w-full">
+                              <div class="absolute ml-4 flex items-center h-full">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  class="h-4 w-4 text-slate-500 dark:text-slate-400"
+                                >
+                                  <circle cx="11" cy="11" r="8"></circle>
+                                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                              </div>
+                              <input
+                                class="bg-inherit border border-default px-4 w-full pl-10 md:w-72 transition-transform duration-500 rounded-full py-2"
+                                placeholder="Search for a token..."
+                                value=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sm:flex hidden">
+                        <div class="relative">
+                          <button
+                            class="space-x-2 px-3.5 py-2 text-sm rounded-full inline-flex justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group"
+                          >
+                            <span class="flex -ml-1.5 -my-0.5 items-center"
+                              ><img src="/assets/usd-c57a8850.svg" class="w-5 h-5" alt=""
+                            /></span>
+                            <div class="flex items-center truncate flex-1">USD</div>
+                            <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              >
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                              </svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                      <div>
+                        <div id="gas-dropdown" class="relative">
+                          <button
+                            class="space-x-2 text-sm rounded-full inline-flex justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group px-3.5 py-1.5 sm:py-2"
+                            aria-label="Gas dropdown"
+                          >
+                            <div class="flex items-center truncate flex-1 !overflow-visible">
+                              <div class="relative">
+                                <img
+                                  class="w-3 h-3 -ml-1.5 mt-2.5 rounded-full object-cover absolute ring-slate-100 dark:ring-slate-700 ring-1"
+                                  src="https://token.metaswap.codefi.network/assets/networkLogos/ethereum.svg"
+                                  alt=""
+                                /><svg
+                                  aria-hidden="true"
+                                  focusable="false"
+                                  data-prefix="fas"
+                                  data-icon="gas-pump"
+                                  class="svg-inline--fa fa-gas-pump"
+                                  role="img"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 512 512"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    d="M32 64C32 28.7 60.7 0 96 0H256c35.3 0 64 28.7 64 64V256h8c48.6 0 88 39.4 88 88v32c0 13.3 10.7 24 24 24s24-10.7 24-24V222c-27.6-7.1-48-32.2-48-62V96L384 64c-8.8-8.8-8.8-23.2 0-32s23.2-8.8 32 0l77.3 77.3c12 12 18.7 28.3 18.7 45.3V168v24 32V376c0 39.8-32.2 72-72 72s-72-32.2-72-72V344c0-22.1-17.9-40-40-40h-8V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64zM96 80v96c0 8.8 7.2 16 16 16H240c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16z"
+                                  ></path>
+                                </svg>
+                              </div>
+                              <span class="hidden lg:flex ml-2">15</span>
+                            </div>
+                            <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              >
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                              </svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                      <div id="notifications-dropdown">
+                        <button
+                          class="space-x-2 px-3.5 py-2 text-sm rounded-full inline-flex justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group"
+                          aria-label="Notifications Dropdown"
+                        >
+                          <div class="flex items-center truncate flex-1">
+                            <div class="relative">
+                              <div class="relative isolate leading-none">
+                                <svg
+                                  aria-hidden="true"
+                                  focusable="false"
+                                  data-prefix="far"
+                                  data-icon="bell"
+                                  class="svg-inline--fa fa-bell fa-fw w-4 h-4"
+                                  role="img"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 448 512"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"
+                                  ></path>
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:mb-8 my-6 md:my-0">
+                    <div class="justify-between flex align-bottom">
+                      <div>
+                        <div class="text-md text-subdued">Portfolio value</div>
+                        <div
+                          class="flex text-2xl md:text-4xl font-semibold text-default dark:text-slate-100 space-x-4 leading-10 items-center"
+                        >
+                          <strong><span>$67</span><span class="text-gray-400 dark:text-gray-400">.02</span></strong
+                          ><button
+                            class="dark:bg-portfolio-slateGray-500 dark:hover:bg-portfolio-slateGray-400 p-2 rounded-lg md:h-10"
+                          >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M10.7429 5.09232C11.1494 5.03223 11.5686 5 12.0004 5C17.1054 5 20.4553 9.50484 21.5807 11.2868C21.7169 11.5025 21.785 11.6103 21.8231 11.7767C21.8518 11.9016 21.8517 12.0987 21.8231 12.2236C21.7849 12.3899 21.7164 12.4985 21.5792 12.7156C21.2793 13.1901 20.8222 13.8571 20.2165 14.5805M6.72432 6.71504C4.56225 8.1817 3.09445 10.2194 2.42111 11.2853C2.28428 11.5019 2.21587 11.6102 2.17774 11.7765C2.1491 11.9014 2.14909 12.0984 2.17771 12.2234C2.21583 12.3897 2.28393 12.4975 2.42013 12.7132C3.54554 14.4952 6.89541 19 12.0004 19C14.0588 19 15.8319 18.2676 17.2888 17.2766M3.00042 3L21.0004 21M9.8791 9.87868C9.3362 10.4216 9.00042 11.1716 9.00042 12C9.00042 13.6569 10.3436 15 12.0004 15C12.8288 15 13.5788 14.6642 14.1217 14.1213"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              ></path></svg
+                            ><span class="sr-only">Hide Monetary values</span>
+                          </button>
+                        </div>
+                        <div class="items-center text-left">
+                          <p class="text-sm truncate text-success"><span class="mr-2">+$0.06</span><span>(+0.10%)</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-5">
+                    <div class="w-full">
+                      <div class="rounded-2xl py-5 px-4 sm:px-6 bg-surface-default">
+                        <div class="flex flex-wrap justify-between items-center space-x-3">
+                          <div
+                            class="flex p-0.5 border border-default sm:space-x-3 rounded-full sm:max-w-md transition-colors"
+                            role="tablist"
+                            aria-orientation="horizontal"
+                          >
+                            <button
+                              class="w-full py-2 text-sm leading-5 px-3 sm:px-6 md:px-6 rounded-full font-medium text-white bg-surface-secondary"
+                              id="headlessui-tabs-tab-:r1:"
+                              role="tab"
+                              type="button"
+                              aria-selected="true"
+                              tabindex="0"
+                              data-headlessui-state="selected"
+                              aria-controls="headlessui-tabs-panel-:r4:"
+                            >
+                              Tokens</button
+                            ><button
+                              class="w-full py-2 text-sm leading-5 px-3 sm:px-6 md:px-6 rounded-full font-medium text-subdued hover:bg-surface-subdued hover:text-default"
+                              id="headlessui-tabs-tab-:r2:"
+                              role="tab"
+                              type="button"
+                              aria-selected="false"
+                              tabindex="-1"
+                              data-headlessui-state=""
+                              aria-controls="headlessui-tabs-panel-:r5:"
+                            >
+                              NFTs</button
+                            ><button
+                              class="w-full py-2 text-sm leading-5 px-3 sm:px-6 md:px-6 rounded-full font-medium text-subdued hover:bg-surface-subdued hover:text-default"
+                              id="headlessui-tabs-tab-:r3:"
+                              role="tab"
+                              type="button"
+                              aria-selected="false"
+                              tabindex="-1"
+                              data-headlessui-state=""
+                              aria-controls="headlessui-tabs-panel-:r6:"
+                            >
+                              Transactions
+                            </button>
+                          </div>
+                        </div>
+                        <div class="mt-6">
+                          <div class="flex flex-wrap gap-x-3 gap-y-6">
+                            <div id="accounts-multi-dropdown" class="relative sm:inline-block text-left">
+                              <div>
+                                <button
+                                  class="space-x-2 px-3.5 text-sm rounded-full inline-flex justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group group py-2.5 sm:h-[42px]"
+                                >
+                                  <span class="flex -ml-1.5 -my-0.5 items-center"
+                                    ><div class="-space-x-1.5 overflow-hidden hidden xl:flex">
+                                      <div
+                                        class="rounded-full ring-4 ring-portfolio-white dark:ring-portfolio-slateGray-500 flex-shrink-0 group-hover:ring-midnight-100 dark:group-hover:ring-blue-800 h-5 w-5"
+                                      >
+                                        <div
+                                          class="paper"
+                                          style="
+                                            border-radius: 50px;
+                                            display: inline-block;
+                                            margin: 0px;
+                                            overflow: hidden;
+                                            padding: 0px;
+                                            background-color: rgb(243, 153, 0);
+                                            height: 20px;
+                                            width: 20px;
+                                          "
+                                        >
+                                          <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" height="20" width="20">
+                                            <rect
+                                              x="0"
+                                              y="0"
+                                              rx="0"
+                                              ry="0"
+                                              height="20"
+                                              width="20"
+                                              transform="translate(-4.194949345379145 -2.189128887441098) rotate(370.0 10 10)"
+                                              fill="#15bff2"
+                                            ></rect>
+                                            <rect
+                                              x="0"
+                                              y="0"
+                                              rx="0"
+                                              ry="0"
+                                              height="20"
+                                              width="20"
+                                              transform="translate(1.2637049357826573 8.291242793866015) rotate(175.4 10 10)"
+                                              fill="#c7146b"
+                                            ></rect>
+                                            <rect
+                                              x="0"
+                                              y="0"
+                                              rx="0"
+                                              ry="0"
+                                              height="20"
+                                              width="20"
+                                              transform="translate(18.922391390516133 1.1743738109735746) rotate(125.2 10 10)"
+                                              fill="#035d5b"
+                                            ></rect>
+                                            <rect
+                                              x="0"
+                                              y="0"
+                                              rx="0"
+                                              ry="0"
+                                              height="20"
+                                              width="20"
+                                              transform="translate(-2.6335980199284013 -24.79429418099065) rotate(422.9 10 10)"
+                                              fill="#f17502"
+                                            ></rect>
+                                          </svg>
+                                        </div>
+                                      </div></div
+                                  ></span>
+                                  <div class="flex items-center truncate flex-1">
+                                    <span id="account-multi-name" class="truncate">0x78b7...ad6bbc</span>
+                                  </div>
+                                  <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="24"
+                                      height="24"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      stroke-width="2"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    >
+                                      <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                            <div id="networks-multi-dropdown" class="relative sm:inline-block text-left">
+                              <div>
+                                <button
+                                  class="space-x-2 px-3.5 text-sm rounded-full inline-flex justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group group py-2.5"
+                                >
+                                  <span class="flex -ml-1.5 -my-0.5 items-center"
+                                    ><div class="-space-x-1.5 overflow-hidden hidden xl:flex">
+                                      <img
+                                        src="https://token.metaswap.codefi.network/assets/networkLogos/ethereum.svg"
+                                        alt="Ethereum"
+                                        class="rounded-full ring-4 ring-portfolio-white dark:ring-portfolio-slateGray-500 flex-shrink-0 group-hover:ring-midnight-100 dark:group-hover:ring-blue-800 h-5 w-5"
+                                      /></div
+                                  ></span>
+                                  <div class="flex items-center truncate flex-1">
+                                    <span class="truncate">Ethereum Network</span>
+                                  </div>
+                                  <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="24"
+                                      height="24"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      stroke-width="2"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    >
+                                      <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="relative">
+                              <button
+                                class="space-x-2 px-3.5 text-sm rounded-full justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group flex py-2.5"
+                              >
+                                <div class="flex items-center truncate flex-1">Token view</div>
+                                <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  >
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                  </svg>
+                                </div>
+                              </button>
+                            </div>
+                            <div id="portfolio-actions" class="relative sm:inline-block text-left">
+                              <button
+                                class="space-x-2 px-3.5 text-sm rounded-full inline-flex justify-center items-center bg-inherit hover:bg-midnight-100 dark:hover:bg-blue-800 text-default hover:text-info hover:dark:text-white border border-default transition-colors group py-2.5"
+                              >
+                                <div class="flex items-center truncate flex-1">More</div>
+                                <div class="w-4 h-4 ml-2 flex items-center justify-end">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  >
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                  </svg>
+                                </div>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <div
+                            class="mt-7 focus:outline-none rounded-xl"
+                            id="headlessui-tabs-panel-:r4:"
+                            role="tabpanel"
+                            tabindex="0"
+                            data-headlessui-state="selected"
+                            aria-labelledby="headlessui-tabs-tab-:r1:"
+                          >
+                            <div id="token-table" class="flex flex-col -mx-4 sm:mx-0">
+                              <div class="overflow-visible dark:border-slate-700 rounded-xl">
+                                <table>
+                                  <thead class="border-b dark:border-slate-700 hidden sm:table-header-group grid grid-cols-12">
+                                    <tr class="grid grid-cols-12">
+                                      <th id="token-header" class="col-span-7 lg:col-span-5 cursor-pointer font-normal flex">
+                                        <div id="token-header-data" class="flex items-center">
+                                          Token
+                                          <div class="relative ml-1">
+                                            <svg
+                                              xmlns="http://www.w3.org/2000/svg"
+                                              width="24"
+                                              height="24"
+                                              viewBox="0 0 24 24"
+                                              fill="none"
+                                              stroke="currentColor"
+                                              stroke-width="2"
+                                              stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              data-tip="true"
+                                              data-for="small-balances-tooltip"
+                                              class="w-4 h-4 cursor-pointer ml-0 mt-0"
+                                              currentItem="false"
+                                            >
+                                              <circle cx="12" cy="12" r="10"></circle>
+                                              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                            </svg>
+                                            <div
+                                              class="__react_component_tooltip tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7 place-top type-dark allow_click"
+                                              id="small-balances-tooltip"
+                                              data-id="tooltip"
+                                            >
+                                              <style aria-hidden="true">
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7 {
+                                                  color: #fff;
+                                                  background: #222;
+                                                  border: 1px solid transparent;
+                                                }
+
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-top {
+                                                  margin-top: -10px;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-top::before {
+                                                  border-top: 8px solid transparent;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-top::after {
+                                                  border-left: 8px solid transparent;
+                                                  border-right: 8px solid transparent;
+                                                  bottom: -6px;
+                                                  left: 50%;
+                                                  margin-left: -8px;
+                                                  border-top-color: #222;
+                                                  border-top-style: solid;
+                                                  border-top-width: 6px;
+                                                }
+
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-bottom {
+                                                  margin-top: 10px;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-bottom::before {
+                                                  border-bottom: 8px solid transparent;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-bottom::after {
+                                                  border-left: 8px solid transparent;
+                                                  border-right: 8px solid transparent;
+                                                  top: -6px;
+                                                  left: 50%;
+                                                  margin-left: -8px;
+                                                  border-bottom-color: #222;
+                                                  border-bottom-style: solid;
+                                                  border-bottom-width: 6px;
+                                                }
+
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-left {
+                                                  margin-left: -10px;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-left::before {
+                                                  border-left: 8px solid transparent;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-left::after {
+                                                  border-top: 5px solid transparent;
+                                                  border-bottom: 5px solid transparent;
+                                                  right: -6px;
+                                                  top: 50%;
+                                                  margin-top: -4px;
+                                                  border-left-color: #222;
+                                                  border-left-style: solid;
+                                                  border-left-width: 6px;
+                                                }
+
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-right {
+                                                  margin-left: 10px;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-right::before {
+                                                  border-right: 8px solid transparent;
+                                                }
+                                                .tf3e9c0d9-d87b-4fcc-8d04-ddb4d5c029c7.place-right::after {
+                                                  border-top: 5px solid transparent;
+                                                  border-bottom: 5px solid transparent;
+                                                  left: -6px;
+                                                  top: 50%;
+                                                  margin-top: -4px;
+                                                  border-right-color: #222;
+                                                  border-right-style: solid;
+                                                  border-right-width: 6px;
+                                                }
+                                              </style>
+                                              <div class="max-w-xs">Displaying tokens with minimum value of $0.01</div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </th>
+                                      <th
+                                        id="portfolio-percentage-header"
+                                        class="hidden lg:table-cell col-span-2 cursor-pointer font-normal flex text-midnight-primary font-semibold"
+                                      >
+                                        <div id="portfolio-percentage-header-data" class="flex items-center">
+                                          Portfolio %
+                                          <div class="flex flex-col items-center ml-2">
+                                            <svg
+                                              width="10"
+                                              height="5"
+                                              viewBox="0 0 10 5"
+                                              class="mb-1 fill-icon-subdued"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                              <path d="M10 5L5 -4.37114e-07L0 5L10 5Z"></path></svg
+                                            ><svg
+                                              width="10"
+                                              height="5"
+                                              viewBox="0 0 10 5"
+                                              class="rotate-180 !fill-midnight-primary"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                              <path d="M10 5L5 -4.37114e-07L0 5L10 5Z"></path>
+                                            </svg>
+                                          </div>
+                                        </div>
+                                      </th>
+                                      <th
+                                        id="price-header"
+                                        class="hidden lg:table-cell col-span-2 cursor-pointer font-normal flex"
+                                      >
+                                        <div id="price-header-data" class="flex items-center">Price (24hr)</div>
+                                      </th>
+                                      <th id="holders-header" class="hidden col-span-2 cursor-pointer font-normal flex">
+                                        <div id="holders-header-data" class="flex items-center">Holders</div>
+                                      </th>
+                                      <th
+                                        id="balance-header"
+                                        class="text-right lg:text-left col-span-4 lg:col-span-2 cursor-pointer font-normal flex"
+                                      >
+                                        <div id="balance-header-data" class="flex items-center">Balance</div>
+                                      </th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody class="sm:divide-y dark:divide-slate-700 pb-10">
+                                    <tr class="cursor-pointer hover:bg-surface-subdued grid grid-cols-12 group">
+                                      <td class="sm:w-auto flex items-center col-span-7 lg:col-span-5">
+                                        <div class="relative mr-4 aspect-square" id="network-icon-1-ETH">
+                                          <div
+                                            class="flex items-center justify-center w-4 h-4 rounded-full object-cover absolute ring-1 ring-slate-100 dark:ring-slate-900 -top-1 -right-1"
+                                          >
+                                            <img
+                                              src="https://token.metaswap.codefi.network/assets/networkLogos/ethereum.svg"
+                                              alt=""
+                                              class="rounded-full"
+                                            />
+                                          </div>
+                                          <img
+                                            src="https://token.metaswap.codefi.network/assets/nativeCurrencyLogos/ethereum.svg"
+                                            alt="ETH"
+                                            class="w-8 h-8 rounded-full object-cover min-w-[2rem]"
+                                          />
+                                        </div>
+                                        <div class="flex items-center max-w-[6rem] sm:max-w-none">
+                                          <div class="flex flex-col mr-2 sm:mr-3">
+                                            <div class="font-semibold dark:text-slate-100 flex items-center">
+                                              <div class="flex"><div class="mr-2">ETH</div></div>
+                                              <div></div>
+                                            </div>
+                                            <div
+                                              class="text-sm text-slate-500 dark:text-slate-400 truncate sm:max-w-none max-w-[8rem]"
+                                            >
+                                              Ethereum
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <a
+                                          class="cursor-pointer disabled:cursor-auto transition text-sm rounded-full border flex items-center justify-center text-center border-brand-default bg-brand-default hover:border-brand-hovered hover:bg-brand-hovered text-white px-2 py-0.5 sm:py-1.5"
+                                          href="/stake"
+                                          ><span class="flex items-center font-normal text-xxs sm:text-sm"
+                                            ><svg
+                                              width="20"
+                                              height="20"
+                                              viewBox="0 0 20 20"
+                                              class="stroke-white mr-1 h-2.5 w-2.5 sm:h-4 sm:w-4"
+                                              fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                              <g clip-path="url(#clip0_735_24127)">
+                                                <path
+                                                  d="M3.99902 19C7.24796 17.5 8.87242 16.75 10.4969 16.75M16.9948 19C13.7458 17.5 12.1214 16.75 10.4969 16.75M10.4969 16.75V11.5M10.4969 11.5L10 10.4091M10.4969 11.5V9.5L10.9967 8.5M10 10.4091C10 10.4091 5.00889 11.0985 2.99935 9.5C1.29118 8.14126 1 4.5 1 4.5C1 4.5 5.55008 3.95155 7.54545 5.90909C8.91802 7.25563 10 10.4091 10 10.4091ZM10.9967 8.5C10.9967 8.5 11.5374 4.11404 13.4959 2.5C15.2137 1.08439 18.9941 1 18.9941 1C18.9941 1 19.1777 5.2683 17.4946 7C15.6792 8.86783 10.9967 8.5 10.9967 8.5Z"
+                                                  stroke-width="1.5"
+                                                  stroke-linecap="round"
+                                                ></path>
+                                              </g>
+                                              <defs>
+                                                <clipPath id="clip0_735_24127">
+                                                  <rect width="20" height="20" fill="white"></rect>
+                                                </clipPath>
+                                              </defs></svg
+                                            >Stake</span
+                                          ></a
+                                        >
+                                      </td>
+                                      <td
+                                        class="whitespace-nowrap hidden lg:table-cell dark:text-slate-100 font-semibold col-span-2"
+                                      >
+                                        <div>97.99%</div>
+                                      </td>
+                                      <td class="whitespace-nowrap hidden lg:table-cell col-span-2">
+                                        <div class="items-center text-left undefined">
+                                          <div class="dark:text-slate-100 font-semibold">$1,569.21</div>
+                                          <p class="text-sm truncate text-success">
+                                            <span class="mr-2">+$1.57</span><span>(+0.10%)</span>
+                                          </p>
+                                        </div>
+                                      </td>
+                                      <td class="whitespace-nowrap hidden col-span-2">
+                                        <div class="-space-x-1.5 hidden lg:flex h-full overflow-visible">
+                                          <div
+                                            data-tip="true"
+                                            data-for="1-0x78b7c70fbce01cb4d8acb251f89245116ead6bbc-0x0000000000000000000000000000000000000000"
+                                            class="rounded-full ring-4 ring-portfolio-white dark:ring-portfolio-slateGray-500 flex-shrink-0 group-hover:ring-midnight-100 dark:group-hover:ring-blue-800 h-6 w-6"
+                                            currentitem="false"
+                                          >
+                                            <div class="rounded-full">
+                                              <div
+                                                class="paper"
+                                                style="
+                                                  border-radius: 50px;
+                                                  display: inline-block;
+                                                  margin: 0px;
+                                                  overflow: hidden;
+                                                  padding: 0px;
+                                                  background-color: rgb(243, 153, 0);
+                                                  height: 24px;
+                                                  width: 24px;
+                                                "
+                                              >
+                                                <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" height="24" width="24">
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(-5.033939214454974 -2.6269546649293174) rotate(370.0 12 12)"
+                                                    fill="#15bff2"
+                                                  ></rect>
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(1.5164459229391887 9.949491352639217) rotate(175.4 12 12)"
+                                                    fill="#c7146b"
+                                                  ></rect>
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(22.70686966861936 1.4092485731682893) rotate(125.2 12 12)"
+                                                    fill="#035d5b"
+                                                  ></rect>
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(-3.1603176239140813 -29.753153017188776) rotate(422.9 12 12)"
+                                                    fill="#f17502"
+                                                  ></rect>
+                                                </svg>
+                                              </div>
+                                            </div>
+                                            <div
+                                              class="__react_component_tooltip tbb5d5ae4-23a1-473e-ae0b-f3933624148b place-top type-dark"
+                                              id="1-0x78b7c70fbce01cb4d8acb251f89245116ead6bbc-0x0000000000000000000000000000000000000000"
+                                              data-id="tooltip"
+                                            >
+                                              <style aria-hidden="true">
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b {
+                                                  color: #fff;
+                                                  background: #222;
+                                                  border: 1px solid transparent;
+                                                }
+
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-top {
+                                                  margin-top: -10px;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-top::before {
+                                                  border-top: 8px solid transparent;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-top::after {
+                                                  border-left: 8px solid transparent;
+                                                  border-right: 8px solid transparent;
+                                                  bottom: -6px;
+                                                  left: 50%;
+                                                  margin-left: -8px;
+                                                  border-top-color: #222;
+                                                  border-top-style: solid;
+                                                  border-top-width: 6px;
+                                                }
+
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-bottom {
+                                                  margin-top: 10px;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-bottom::before {
+                                                  border-bottom: 8px solid transparent;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-bottom::after {
+                                                  border-left: 8px solid transparent;
+                                                  border-right: 8px solid transparent;
+                                                  top: -6px;
+                                                  left: 50%;
+                                                  margin-left: -8px;
+                                                  border-bottom-color: #222;
+                                                  border-bottom-style: solid;
+                                                  border-bottom-width: 6px;
+                                                }
+
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-left {
+                                                  margin-left: -10px;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-left::before {
+                                                  border-left: 8px solid transparent;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-left::after {
+                                                  border-top: 5px solid transparent;
+                                                  border-bottom: 5px solid transparent;
+                                                  right: -6px;
+                                                  top: 50%;
+                                                  margin-top: -4px;
+                                                  border-left-color: #222;
+                                                  border-left-style: solid;
+                                                  border-left-width: 6px;
+                                                }
+
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-right {
+                                                  margin-left: 10px;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-right::before {
+                                                  border-right: 8px solid transparent;
+                                                }
+                                                .tbb5d5ae4-23a1-473e-ae0b-f3933624148b.place-right::after {
+                                                  border-top: 5px solid transparent;
+                                                  border-bottom: 5px solid transparent;
+                                                  left: -6px;
+                                                  top: 50%;
+                                                  margin-top: -4px;
+                                                  border-right-color: #222;
+                                                  border-right-style: solid;
+                                                  border-right-width: 6px;
+                                                }</style
+                                              >0x78b7c7...ead6bbc
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td class="px-3 sm:px-6 whitespace-nowrap sm:w-auto col-span-3 lg:col-span-2">
+                                        <div
+                                          class="items-center text-right max-w-[9rem] sm:max-w-[10rem] md:text-left lg:max-w-none"
+                                        >
+                                          <div>
+                                            <p class="text-sm sm:text-base text-default font-semibold truncate">$65.67</p>
+                                            <p class="text-xs sm:text-sm leading-5 font-normal text-subdued truncate">
+                                              0.0418 ETH
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td class="sm:px-6 w-6 sm:w-auto col-span-1">
+                                        <div class="flex items-center justify-center h-full">
+                                          <div class="md:hidden group-hover:block relative">
+                                            <div id="tokens-more-menu" class="relative sm:inline-block text-left">
+                                              <div>
+                                                <button
+                                                  class="inline-flex justify-center items-center w-6 h-6 text-slate-500 dark:text-slate-400 transition-colors"
+                                                  data-tip="true"
+                                                  data-for="token-more-1-0x0000000000000000000000000000000000000000"
+                                                  currentitem="false"
+                                                >
+                                                  <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="w-4 h-4"
+                                                  >
+                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                    <circle cx="12" cy="5" r="1"></circle>
+                                                    <circle cx="12" cy="19" r="1"></circle>
+                                                  </svg>
+                                                  <div
+                                                    class="__react_component_tooltip t3fbbe214-91a9-4873-9f6d-fafdf7e194bb place-top type-dark"
+                                                    id="token-more-1-0x0000000000000000000000000000000000000000"
+                                                    data-id="tooltip"
+                                                  >
+                                                    <style aria-hidden="true">
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb {
+                                                        color: #fff;
+                                                        background: #222;
+                                                        border: 1px solid transparent;
+                                                      }
+
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-top {
+                                                        margin-top: -10px;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-top::before {
+                                                        border-top: 8px solid transparent;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-top::after {
+                                                        border-left: 8px solid transparent;
+                                                        border-right: 8px solid transparent;
+                                                        bottom: -6px;
+                                                        left: 50%;
+                                                        margin-left: -8px;
+                                                        border-top-color: #222;
+                                                        border-top-style: solid;
+                                                        border-top-width: 6px;
+                                                      }
+
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-bottom {
+                                                        margin-top: 10px;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-bottom::before {
+                                                        border-bottom: 8px solid transparent;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-bottom::after {
+                                                        border-left: 8px solid transparent;
+                                                        border-right: 8px solid transparent;
+                                                        top: -6px;
+                                                        left: 50%;
+                                                        margin-left: -8px;
+                                                        border-bottom-color: #222;
+                                                        border-bottom-style: solid;
+                                                        border-bottom-width: 6px;
+                                                      }
+
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-left {
+                                                        margin-left: -10px;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-left::before {
+                                                        border-left: 8px solid transparent;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-left::after {
+                                                        border-top: 5px solid transparent;
+                                                        border-bottom: 5px solid transparent;
+                                                        right: -6px;
+                                                        top: 50%;
+                                                        margin-top: -4px;
+                                                        border-left-color: #222;
+                                                        border-left-style: solid;
+                                                        border-left-width: 6px;
+                                                      }
+
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-right {
+                                                        margin-left: 10px;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-right::before {
+                                                        border-right: 8px solid transparent;
+                                                      }
+                                                      .t3fbbe214-91a9-4873-9f6d-fafdf7e194bb.place-right::after {
+                                                        border-top: 5px solid transparent;
+                                                        border-bottom: 5px solid transparent;
+                                                        left: -6px;
+                                                        top: 50%;
+                                                        margin-top: -4px;
+                                                        border-right-color: #222;
+                                                        border-right-style: solid;
+                                                        border-right-width: 6px;
+                                                      }</style
+                                                    >Token actions
+                                                  </div>
+                                                </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr class="cursor-pointer hover:bg-surface-subdued grid grid-cols-12 group">
+                                      <td class="sm:w-auto flex items-center col-span-7 lg:col-span-5">
+                                        <div class="relative mr-4 aspect-square" id="network-icon-1-USDC">
+                                          <div
+                                            class="flex items-center justify-center w-4 h-4 rounded-full object-cover absolute ring-1 ring-slate-100 dark:ring-slate-900 -top-1 -right-1"
+                                          >
+                                            <img
+                                              src="https://token.metaswap.codefi.network/assets/networkLogos/ethereum.svg"
+                                              alt=""
+                                              class="rounded-full"
+                                            />
+                                          </div>
+                                          <img
+                                            src="https://static.metaswap.codefi.network/api/v1/tokenIcons/1/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.png"
+                                            alt="USDC"
+                                            class="w-8 h-8 rounded-full object-cover min-w-[2rem]"
+                                          />
+                                        </div>
+                                        <div class="flex items-center max-w-[6rem] sm:max-w-none">
+                                          <div class="flex flex-col mr-2 sm:mr-3">
+                                            <div class="font-semibold dark:text-slate-100 flex items-center">
+                                              <div class="flex"><div class="mr-2">USDC</div></div>
+                                              <div currentitem="false"></div>
+                                            </div>
+                                            <div
+                                              class="text-sm text-slate-500 dark:text-slate-400 truncate sm:max-w-none max-w-[8rem]"
+                                            >
+                                              USD Coin
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td
+                                        class="whitespace-nowrap hidden lg:table-cell dark:text-slate-100 font-semibold col-span-2"
+                                      >
+                                        <div>2.01%</div>
+                                      </td>
+                                      <td class="whitespace-nowrap hidden lg:table-cell col-span-2">
+                                        <div class="items-center text-left undefined">
+                                          <div class="dark:text-slate-100 font-semibold">$1.00</div>
+                                          <p class="text-sm truncate text-critical">
+                                            <span class="mr-2">-$0.0009</span><span>(-0.09%)</span>
+                                          </p>
+                                        </div>
+                                      </td>
+                                      <td class="whitespace-nowrap hidden col-span-2">
+                                        <div class="-space-x-1.5 hidden lg:flex h-full overflow-visible">
+                                          <div
+                                            data-tip="true"
+                                            data-for="1-0x78b7c70fbce01cb4d8acb251f89245116ead6bbc-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                                            class="rounded-full ring-4 ring-portfolio-white dark:ring-portfolio-slateGray-500 flex-shrink-0 group-hover:ring-midnight-100 dark:group-hover:ring-blue-800 h-6 w-6"
+                                            currentitem="false"
+                                          >
+                                            <div class="rounded-full">
+                                              <div
+                                                class="paper"
+                                                style="
+                                                  border-radius: 50px;
+                                                  display: inline-block;
+                                                  margin: 0px;
+                                                  overflow: hidden;
+                                                  padding: 0px;
+                                                  background-color: rgb(243, 153, 0);
+                                                  height: 24px;
+                                                  width: 24px;
+                                                "
+                                              >
+                                                <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" height="24" width="24">
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(-5.033939214454974 -2.6269546649293174) rotate(370.0 12 12)"
+                                                    fill="#15bff2"
+                                                  ></rect>
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(1.5164459229391887 9.949491352639217) rotate(175.4 12 12)"
+                                                    fill="#c7146b"
+                                                  ></rect>
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(22.70686966861936 1.4092485731682893) rotate(125.2 12 12)"
+                                                    fill="#035d5b"
+                                                  ></rect>
+                                                  <rect
+                                                    x="0"
+                                                    y="0"
+                                                    rx="0"
+                                                    ry="0"
+                                                    height="24"
+                                                    width="24"
+                                                    transform="translate(-3.1603176239140813 -29.753153017188776) rotate(422.9 12 12)"
+                                                    fill="#f17502"
+                                                  ></rect>
+                                                </svg>
+                                              </div>
+                                            </div>
+                                            <div
+                                              class="__react_component_tooltip taedec412-1e95-4fca-b9a9-b1653d3f78cc place-top type-dark"
+                                              id="1-0x78b7c70fbce01cb4d8acb251f89245116ead6bbc-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                                              data-id="tooltip"
+                                            >
+                                              <style aria-hidden="true">
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc {
+                                                  color: #fff;
+                                                  background: #222;
+                                                  border: 1px solid transparent;
+                                                }
+
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-top {
+                                                  margin-top: -10px;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-top::before {
+                                                  border-top: 8px solid transparent;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-top::after {
+                                                  border-left: 8px solid transparent;
+                                                  border-right: 8px solid transparent;
+                                                  bottom: -6px;
+                                                  left: 50%;
+                                                  margin-left: -8px;
+                                                  border-top-color: #222;
+                                                  border-top-style: solid;
+                                                  border-top-width: 6px;
+                                                }
+
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-bottom {
+                                                  margin-top: 10px;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-bottom::before {
+                                                  border-bottom: 8px solid transparent;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-bottom::after {
+                                                  border-left: 8px solid transparent;
+                                                  border-right: 8px solid transparent;
+                                                  top: -6px;
+                                                  left: 50%;
+                                                  margin-left: -8px;
+                                                  border-bottom-color: #222;
+                                                  border-bottom-style: solid;
+                                                  border-bottom-width: 6px;
+                                                }
+
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-left {
+                                                  margin-left: -10px;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-left::before {
+                                                  border-left: 8px solid transparent;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-left::after {
+                                                  border-top: 5px solid transparent;
+                                                  border-bottom: 5px solid transparent;
+                                                  right: -6px;
+                                                  top: 50%;
+                                                  margin-top: -4px;
+                                                  border-left-color: #222;
+                                                  border-left-style: solid;
+                                                  border-left-width: 6px;
+                                                }
+
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-right {
+                                                  margin-left: 10px;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-right::before {
+                                                  border-right: 8px solid transparent;
+                                                }
+                                                .taedec412-1e95-4fca-b9a9-b1653d3f78cc.place-right::after {
+                                                  border-top: 5px solid transparent;
+                                                  border-bottom: 5px solid transparent;
+                                                  left: -6px;
+                                                  top: 50%;
+                                                  margin-top: -4px;
+                                                  border-right-color: #222;
+                                                  border-right-style: solid;
+                                                  border-right-width: 6px;
+                                                }</style
+                                              >0x78b7c7...ead6bbc
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td class="px-3 sm:px-6 whitespace-nowrap sm:w-auto col-span-3 lg:col-span-2">
+                                        <div
+                                          class="items-center text-right max-w-[9rem] sm:max-w-[10rem] md:text-left lg:max-w-none"
+                                        >
+                                          <div>
+                                            <p class="text-sm sm:text-base text-default font-semibold truncate">$1.35</p>
+                                            <p class="text-xs sm:text-sm leading-5 font-normal text-subdued truncate">
+                                              1.35 USDC
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td class="sm:px-6 w-6 sm:w-auto col-span-1">
+                                        <div class="flex items-center justify-center h-full">
+                                          <div class="md:hidden group-hover:block relative">
+                                            <div id="tokens-more-menu" class="relative sm:inline-block text-left">
+                                              <div>
+                                                <button
+                                                  class="inline-flex justify-center items-center w-6 h-6 text-slate-500 dark:text-slate-400 transition-colors"
+                                                  data-tip="true"
+                                                  data-for="token-more-1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                                                  currentitem="false"
+                                                >
+                                                  <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="w-4 h-4"
+                                                  >
+                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                    <circle cx="12" cy="5" r="1"></circle>
+                                                    <circle cx="12" cy="19" r="1"></circle>
+                                                  </svg>
+                                                  <div
+                                                    class="__react_component_tooltip t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5 place-top type-dark"
+                                                    id="token-more-1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                                                    data-id="tooltip"
+                                                  >
+                                                    <style aria-hidden="true">
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5 {
+                                                        color: #fff;
+                                                        background: #222;
+                                                        border: 1px solid transparent;
+                                                      }
+
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-top {
+                                                        margin-top: -10px;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-top::before {
+                                                        border-top: 8px solid transparent;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-top::after {
+                                                        border-left: 8px solid transparent;
+                                                        border-right: 8px solid transparent;
+                                                        bottom: -6px;
+                                                        left: 50%;
+                                                        margin-left: -8px;
+                                                        border-top-color: #222;
+                                                        border-top-style: solid;
+                                                        border-top-width: 6px;
+                                                      }
+
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-bottom {
+                                                        margin-top: 10px;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-bottom::before {
+                                                        border-bottom: 8px solid transparent;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-bottom::after {
+                                                        border-left: 8px solid transparent;
+                                                        border-right: 8px solid transparent;
+                                                        top: -6px;
+                                                        left: 50%;
+                                                        margin-left: -8px;
+                                                        border-bottom-color: #222;
+                                                        border-bottom-style: solid;
+                                                        border-bottom-width: 6px;
+                                                      }
+
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-left {
+                                                        margin-left: -10px;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-left::before {
+                                                        border-left: 8px solid transparent;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-left::after {
+                                                        border-top: 5px solid transparent;
+                                                        border-bottom: 5px solid transparent;
+                                                        right: -6px;
+                                                        top: 50%;
+                                                        margin-top: -4px;
+                                                        border-left-color: #222;
+                                                        border-left-style: solid;
+                                                        border-left-width: 6px;
+                                                      }
+
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-right {
+                                                        margin-left: 10px;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-right::before {
+                                                        border-right: 8px solid transparent;
+                                                      }
+                                                      .t26c1a2b1-6c1d-46fc-b294-8c17a226a4d5.place-right::after {
+                                                        border-top: 5px solid transparent;
+                                                        border-bottom: 5px solid transparent;
+                                                        left: -6px;
+                                                        top: 50%;
+                                                        margin-top: -4px;
+                                                        border-right-color: #222;
+                                                        border-right-style: solid;
+                                                        border-right-width: 6px;
+                                                      }</style
+                                                    >Token actions
+                                                  </div>
+                                                </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <span
+                            id="headlessui-tabs-panel-:r5:"
+                            role="tabpanel"
+                            tabindex="-1"
+                            aria-labelledby="headlessui-tabs-tab-:r2:"
+                            style="
+                              position: fixed;
+                              top: 1px;
+                              left: 1px;
+                              width: 1px;
+                              height: 0px;
+                              padding: 0px;
+                              margin: -1px;
+                              overflow: hidden;
+                              clip: rect(0px, 0px, 0px, 0px);
+                              white-space: nowrap;
+                              border-width: 0px;
+                            "
+                          ></span
+                          ><span
+                            id="headlessui-tabs-panel-:r6:"
+                            role="tabpanel"
+                            tabindex="-1"
+                            aria-labelledby="headlessui-tabs-tab-:r3:"
+                            style="
+                              position: fixed;
+                              top: 1px;
+                              left: 1px;
+                              width: 1px;
+                              height: 0px;
+                              padding: 0px;
+                              margin: -1px;
+                              overflow: hidden;
+                              clip: rect(0px, 0px, 0px, 0px);
+                              white-space: nowrap;
+                              border-width: 0px;
+                            "
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- begin usabilla live embed code -->
+    <script async="" defer="" type="text/javascript">
+      window.lightningjs ||
+        (function (n) {
+          var e = 'lightningjs';
+          function t(e, t) {
+            var r, i, a, o, d, c;
+            return (
+              t && (t += (/\?/.test(t) ? '&' : '?') + 'lv=1'),
+              n[e] ||
+                ((r = window),
+                (i = document),
+                (a = e),
+                (o = i.location.protocol),
+                (d = 'load'),
+                (c = 0),
+                (function () {
+                  n[a] = function () {
+                    var t = arguments,
+                      i = this,
+                      o = ++c,
+                      d = (i && i != r && i.id) || 0;
+                    function s() {
+                      return (s.id = o), n[a].apply(s, arguments);
+                    }
+                    return (
+                      (e.s = e.s || []).push([o, d, t]),
+                      (s.then = function (n, t, r) {
+                        var i = (e.fh[o] = e.fh[o] || []),
+                          a = (e.eh[o] = e.eh[o] || []),
+                          d = (e.ph[o] = e.ph[o] || []);
+                        return n && i.push(n), t && a.push(t), r && d.push(r), s;
+                      }),
+                      s
+                    );
+                  };
+                  var e = (n[a]._ = {});
+                  function s() {
+                    e.P(d), (e.w = 1), n[a]('_load');
+                  }
+                  (e.fh = {}),
+                    (e.eh = {}),
+                    (e.ph = {}),
+                    (e.l = t ? t.replace(/^\/\//, ('https:' == o ? o : 'http:') + '//') : t),
+                    (e.p = { 0: +new Date() }),
+                    (e.P = function (n) {
+                      e.p[n] = new Date() - e.p[0];
+                    }),
+                    e.w && s(),
+                    r.addEventListener ? r.addEventListener(d, s, !1) : r.attachEvent('onload', s);
+                  var l = function () {
+                    function n() {
+                      return [
+                        '<!DOCTYPE ',
+                        o,
+                        '><',
+                        o,
+                        '><head></head><',
+                        t,
+                        '><',
+                        r,
+                        ' src="',
+                        e.l,
+                        '"></',
+                        r,
+                        '></',
+                        t,
+                        '></',
+                        o,
+                        '>',
+                      ].join('');
+                    }
+                    var t = 'body',
+                      r = 'script',
+                      o = 'html',
+                      d = i[t];
+                    if (!d) return setTimeout(l, 100);
+                    e.P(1);
+                    var c,
+                      s = i.createElement('div'),
+                      h = s.appendChild(i.createElement('div')),
+                      u = i.createElement('iframe');
+                    (s.style.display = 'none'),
+                      (d.insertBefore(s, d.firstChild).id = 'lightningjs-' + a),
+                      (u.frameBorder = '0'),
+                      (u.id = 'lightningjs-frame-' + a),
+                      /MSIE[ ]+6/.test(navigator.userAgent) && (u.src = 'javascript:false'),
+                      (u.allowTransparency = 'true'),
+                      h.appendChild(u);
+                    try {
+                      u.contentWindow.document.open();
+                    } catch (n) {
+                      (e.domain = i.domain),
+                        (c = "javascript:var d=document.open();d.domain='" + i.domain + "';"),
+                        (u.src = c + 'void(0);');
+                    }
+                    try {
+                      var p = u.contentWindow.document;
+                      p.write(n()), p.close();
+                    } catch (e) {
+                      u.src = c + 'd.write("' + n().replace(/"/g, String.fromCharCode(92) + '"') + '");d.close();';
+                    }
+                    e.P(2);
+                  };
+                  e.l && l();
+                })()),
+              (n[e].lv = '1'),
+              n[e]
+            );
+          }
+          var r = (window.lightningjs = t(e));
+          (r.require = t), (r.modules = n);
+        })({});
+      window.usabilla_live = lightningjs.require('usabilla_live', '//w.usabilla.com/ade130c1096e.js');
+    </script>
+    <!-- end usabilla live embed code -->
+
+    <div class="ReactModalPortal"></div>
+    <div
+      class="usabilla_live_button_container"
+      id="usabilla_live_button_container_14224350"
+      role="button"
+      tabindex="0"
+      aria-label="Usabilla Feedback Button"
+      style="display: none"
+    >
+      <style type="text/css" nonce="ade130c1096e">
+        div.usabilla_live_button_container#usabilla_live_button_container_14224350[role='button'] {
+          margin-top: -67.5px;
+          width: 40px;
+          height: 135px;
+          position: fixed;
+          z-index: 999;
+          right: 0;
+          top: 85%;
+        }</style
+      ><iframe
+        src=""
+        frameborder="0"
+        marginwidth="0"
+        marginheight="0"
+        scrolling="no"
+        data-tags="right"
+        title="Usabilla Feedback Button"
+        class="usabilla-live-button"
+        id="usabilla_live_button_container_iframe807868493"
+      ></iframe>
+    </div>
+    <iframe
+      tabindex="-1"
+      aria-hidden="true"
+      role="presentation"
+      title="Intentionally blank"
+      name="lpSS_64695462705"
+      id="lpSS_64695462705"
+      src="https://lpcdn.lpsnmedia.net/le_secure_storage/3.21.1.0-release_5088/storage.secure.min.html?loc=https%3A%2F%2Fportfolio.metamask.io&amp;site=88982875&amp;env=prod&amp;isCrossDomain=true&amp;accdn=accdn.lpsnmedia.net"
+      style="width: 0px; height: 0px; position: absolute; top: -1000px; left: -1000px; display: none"
+    ></iframe>
+    <script
+      id="lpSS_36465057349"
+      src="https://lpcdn.lpsnmedia.net/le_secure_storage/3.21.1.0-release_5088/storage.secure.min.js?loc=https%3A%2F%2Fportfolio.metamask.io&amp;site=88982875&amp;force=1&amp;env=prod&amp;isCrossDomain=true&amp;accdn=accdn.lpsnmedia.net"
+    ></script>
+  </body>
+  <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+</html>
