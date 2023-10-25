@@ -20,7 +20,7 @@ async function initializeLightClientVerifier() {
             chrome.runtime.lastError &&
             chrome.runtime.lastError.message !== 'The message port closed before a response was received.'
           ) {
-            console.error('Error sending message:', chrome.runtime.lastError);
+            console.log('Error sending message, no tab with content script was active');
           }
         });
       }
