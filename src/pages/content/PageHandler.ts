@@ -30,7 +30,6 @@ export abstract class PageHandler {
     await this._run();
 
     chrome.runtime.onMessage.addListener(async (message) => {
-      console.log(message);
       if (message.action === Actions.headerUpdate) {
         await this.verifyBalancesAndUpdatePage();
       } else if (message.action === Actions.configUpdate) {
