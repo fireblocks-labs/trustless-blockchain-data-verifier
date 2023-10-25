@@ -11,7 +11,6 @@ export class EtherscanAddressPageHandler extends PageHandler {
     window: Window,
     public address?: string,
     private tokenList?: NodeListOf<Element>,
-    private verificationElementId: string = 'verification-status-id',
   ) {
     super(document, window, etherscanAddressTokenRoundingDigits, undefined);
   }
@@ -83,7 +82,7 @@ export class EtherscanAddressPageHandler extends PageHandler {
     if (ethereumIcon) {
       const balanceContainer = ethereumIcon.parentNode;
       if (balanceContainer) {
-        const balanceText = balanceContainer.textContent?.trim();
+        const balanceText = balanceContainer.textContent?.trim().replace(/,/g, '');
         const match = balanceText?.match(/([\d.]+)/);
         if (match) {
           return parseFloat(match[0]);

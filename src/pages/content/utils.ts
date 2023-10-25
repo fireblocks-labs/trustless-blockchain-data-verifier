@@ -40,14 +40,16 @@ export function waitForElement(selector: string, document: Document) {
 export function generateTokenToTextMap(balanceComparisonAtBlock: BalanceComparisonAtBlock): Record<string, string> {
   const tokenToTextMap: Record<string, string> = {};
   const balancesData = balanceComparisonAtBlock.balanceComparisonResult;
-  const verifiedText = `✅ Verified @ Block ${balanceComparisonAtBlock.blockNumber}`;
-  const balanceNotEqText = `❌ Balance Mismatch @ Block ${balanceComparisonAtBlock.blockNumber}`;
-  const verificationFailedText = `❌ Verification Failed @ Block ${balanceComparisonAtBlock.blockNumber}`;
+  const suffix = ` @ Block ${balanceComparisonAtBlock.blockNumber}`;
+  const verifiedText = '✅ Verified' + suffix;
+  const balanceNotEqText = '❌ Balance Mismatch';
+  const verificationFailedText = '❌ Verification Failed' + suffix;
   if (balancesData.ethBalance.isVerified) {
     if (balancesData.ethBalance.isEqual === true) {
       tokenToTextMap[ETH] = verifiedText;
     } else {
-      tokenToTextMap[ETH] = balanceNotEqText;
+      tokenToTextMap[ETH] =
+        balanceNotEqText + `, Diff ${balancesData.ethBalance.expected - balancesData.ethBalance.returned!}` + suffix;
     }
   } else {
     tokenToTextMap[ETH] = verificationFailedText;
@@ -58,11 +60,11 @@ export function generateTokenToTextMap(balanceComparisonAtBlock: BalanceComparis
       const token = balancesData.erc20Balances[address];
       if (token.returned === undefined) {
         tokenToTextMap[address] = '❓ Unsupported Token';
-      } else if (balancesData.ethBalance.isVerified) {
+      } else if (token.isVerified) {
         if (token.isEqual === true) {
           tokenToTextMap[address] = verifiedText;
         } else {
-          tokenToTextMap[address] = balanceNotEqText;
+          tokenToTextMap[address] = balanceNotEqText + `, Diff ${token.expected - token.returned!}` + suffix;
         }
       } else {
         tokenToTextMap[address] = verificationFailedText;
