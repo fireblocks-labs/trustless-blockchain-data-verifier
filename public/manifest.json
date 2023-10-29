@@ -17,11 +17,19 @@
   },
   "content_scripts": [
     {
-      "js": ["content.js"],
-      "matches": ["https://etherscan.io/tokenholdings*", "https://etherscan.io/address*", "https://portfolio.metamask.io/"]
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "https://etherscan.io/tokenholdings*",
+        "https://etherscan.io/address*",
+        "https://portfolio.metamask.io/"
+      ]
     }
   ],
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "service_worker": "background.js"
   }

@@ -10,6 +10,7 @@
   "scripts": {
     "build": "webpack --config webpack/webpack.config.cjs",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "update-manifest-version": "node scripts/update-manifest-version.js",
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0 --cache --cache-strategy content && echo 'Lint OK!'",
     "lint:fix": "eslint . --ext .ts,.tsx --max-warnings 0 --cache --cache-strategy content --fix",
     "prettier": "prettier --config .prettierrc.json 'src/**/*.ts' 'test/**/*.ts' --check",
