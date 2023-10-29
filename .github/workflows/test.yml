@@ -33,4 +33,4 @@ jobs:
           path: extension-${{ github.sha }}.zip
 
       - name: Test
-          npm run test
+        run: npm run test
