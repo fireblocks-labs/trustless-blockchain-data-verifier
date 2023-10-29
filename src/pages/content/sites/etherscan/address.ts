@@ -26,7 +26,7 @@ export class EtherscanAddressPageHandler extends PageHandler {
     }
     this.tokenList = tokenList;
 
-    const address = this.getAddressFromUrl(this.window.location.href);
+    const address = this.getAddress(this.window.location.href);
     if (!address) {
       throw Error('Failed to get address');
     }
@@ -35,7 +35,7 @@ export class EtherscanAddressPageHandler extends PageHandler {
     this.setupVerificationStatus();
   }
 
-  getAddressFromUrl(url: string): string | undefined {
+  getAddress(url: string): string | undefined {
     let match = url.match(/^https:\/\/etherscan\.io\/address\/(0x[0-9a-fA-F]+)/);
     if (!match) {
       return document.getElementById('mainaddress')?.innerText
