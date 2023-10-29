@@ -35,9 +35,13 @@ export class EtherscanAddressPageHandler extends PageHandler {
     this.setupVerificationStatus();
   }
 
-  getAddressFromUrl(url: string): string | null {
-    const match = url.match(/^https:\/\/etherscan\.io\/address\/(0x[0-9a-fA-F]+)/);
-    return match ? match[1] : null;
+  getAddressFromUrl(url: string): string | undefined {
+    let match = url.match(/^https:\/\/etherscan\.io\/address\/(0x[0-9a-fA-F]+)/);
+    if (!match) {
+      return document.getElementById('mainaddress')?.innerText
+    } else {
+      return match[1]
+    }
   }
 
   getSymbolFromTokenElement(tokenElement: Element) {
