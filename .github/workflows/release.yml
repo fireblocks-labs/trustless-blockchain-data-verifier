@@ -1,0 +1,45 @@
+name: Release
+on:
+  release:
+    types: [ published ]
+env:
+  GIT_TERMINAL_PROMPT: 1
+
+jobs:
+ upload-extension:
+    name: Build and upload extension to Chrome Web Store
+    runs-on: ubuntu-latest
+    env:
+      EXTENSION_ID: lamobknkahhlgennggjjphcdfndjkafj
+
+    steps:
+      - name: Build and upload extension to Chrome Web Store
+        uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '18.12.1'
+      - run: |
+          npm install
+          initialTag=${{ github.event.release.tag_name }}
+          tag="${initialTag//[v]/}"
+          echo $tag
+          git remote update
+          git fetch
+          git checkout --track origin/main
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "Github Actions"
+          npm --no-git-tag-version --allow-same-version version $tag
+          npm run update-manifest-version
+          npm i -g auto-changelog
+          auto-changelog --hide-credit -l 100
+          git add .
+          git commit -m "Release $tag"
+          npm run build
+          npm install -g chrome-webstore-upload-cli
+          chrome-webstore-upload upload \\
+            --source dist \\
+            --extension-id ${{ env.EXTENSION_ID }} \\
+            --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
+            --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
+            --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
+          git push
