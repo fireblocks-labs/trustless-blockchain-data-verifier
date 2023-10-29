@@ -18,7 +18,7 @@ jobs:
         with:
           cache: 'npm'
           node-version: '18.12.1'
-        run: |
+      - run: |
           npm install
           initialTag=${{ github.event.release.tag_name }}
           tag="${initialTag//[v]/}"
@@ -35,7 +35,6 @@ jobs:
           git add .
           git commit -m "Release $tag"
           npm run build
-          zip -r extension.zip dist
           npm install -g chrome-webstore-upload-cli
           chrome-webstore-upload upload \\
             --source dist \\
