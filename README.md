@@ -5,12 +5,14 @@
 
 This extension uses the [Lodestar](https://github.com/ChainSafe/lodestar) light client implementation to verify blockchain information from centralized sources.
 
-Currently only Ethereum balance verification is supported.
+The extension is available in the [chrome web store](https://chrome.google.com/webstore/detail/trustless-blockchain-data/lamobknkahhlgennggjjphcdfndjkafj).
+
+- Currently only Ethereum balance verification is supported.
 
 ![MetaMask Portfolio](images/MetamaskPortfolio.png?raw=true)
 ![Etherscan](images/Etherscan.png?raw=true)
 
-# Background & Information
+## Background & Information
 
 [Don’t trust, verify: An introduction to light clients](https://a16zcrypto.com/posts/article/an-introduction-to-light-clients) by a16zcrypto (Helios)
 
@@ -18,31 +20,31 @@ Currently only Ethereum balance verification is supported.
 
 [List of sync checkpoint providers](https://eth-clients.github.io/checkpoint-sync-endpoints/)
 
-# Development
+## Development
 
-## Requirements
+### Requirements
 
 Node version 17 or above
 
-## Install
+### Install
 
 ```
 npm install
 ```
 
-## Build
+### Build
 
 ```
 npm run build
 ```
 
-## Test
+### Test
 
 ```
 npm run test
 ```
 
-## Load Chrome Extension
+### Load Chrome Extension
 
 1. Open Google Chrome and go to the three-dot menu on the top right corner of the browser.
 2. Go to "More tools" > "Extensions."
@@ -50,7 +52,15 @@ npm run test
 4. Click on "Load unpacked" button, select the folder containing your unpacked extension, and click on "Select Folder."
 5. Select `dist` folder
 
-# Roadmap
+## Contributing
+
+Contributions of code and ideas are welcome. Prior to opening a pull request, please carefully review our [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+The code in this repository is offered under the terms of the MIT License, as described in the [LICENSE](LICENSE) file.
+
+## Roadmap
 
 ### Balance Verification
 
