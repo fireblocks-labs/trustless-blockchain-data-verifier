@@ -2,6 +2,16 @@ import { LightClientVerifierInitArgs, LightClientVerifier } from '../../LightCli
 import { Actions, configStorageName, runningStorageName, initialConfig } from '../../common';
 import { getStorageItem, setStorageItem, setStorageData } from '../../storage';
 
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason === 'install' || details.reason === 'update') {
+    setStorageData({ [configStorageName]: initialConfig, [runningStorageName]: false });
+  }
+});
+
+chrome.runtime.onStartup.addListener(async () => {
+  main();
+});
+
 async function initializeLightClientVerifier() {
   let config = await getStorageItem(configStorageName);
   if (!config) {
@@ -66,12 +76,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 async function main() {
+  await setStorageItem(runningStorageName, false);
   let config = await getStorageItem(configStorageName);
   if (!config) {
-    await setStorageData({ [configStorageName]: initialConfig, [runningStorageName]: false });
+    await setStorageItem(configStorageName, initialConfig);
     config = initialConfig;
-  } else {
-    await setStorageItem(runningStorageName, false);
   }
   globalLightClientVerifier = await initializeLightClientVerifier();
 }
