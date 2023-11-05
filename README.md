@@ -12,6 +12,16 @@ The extension is available in the [chrome web store](https://chrome.google.com/w
 ![MetaMask Portfolio](images/MetamaskPortfolio.png?raw=true)
 ![Etherscan](images/Etherscan.png?raw=true)
 
+## Usage
+Visit one of the supported websites, a verificaiton status indication should be added next to native ETH and token balances.
+
+### Configuration
+Configuration is managed by clicking the extension icon.
+
+- **Beacon API URL**: [Beacon API](https://ethereum.github.io/beacon-APIs/#/Beacon) endpoint url. Default https://lodestar-mainnet.chainsafe.io
+- **Ethereum RPC URL**: Regular Ethereum node endpoint url. Default https://lodestar-mainnetrpc.chainsafe.io, can be changed to any node url.
+- **Initial Checkpoint**: Initial checkpoint to start syncing from. Can be chosen from a trusted checkpoint provider, for example from [this list](https://eth-clients.github.io/checkpoint-sync-endpoints/)
+
 ## Background & Information
 
 [Don’t trust, verify: An introduction to light clients](https://a16zcrypto.com/posts/article/an-introduction-to-light-clients) by a16zcrypto (Helios)
