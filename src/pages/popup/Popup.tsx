@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Tooltip } from 'react-tooltip';
 import Tippy from '@tippyjs/react';
 import { Actions, configStorageName } from '../../common';
 import { getStorageItem, setStorageItem } from '../../storage';
