@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Tooltip } from 'react-tooltip';
+import Tippy from '@tippyjs/react';
 import { Actions, configStorageName } from '../../common';
 import { getStorageItem, setStorageItem } from '../../storage';
 import erc20Contracts from '../../../public/erc20Contracts.json' assert { type: 'json' };
 import { LightClientVerifierInitArgs } from '../../LightClientVerifier';
+import 'tippy.js/dist/tippy.css';
 
 const Popup = () => {
   const initialFormData = {
@@ -38,7 +41,6 @@ const Popup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     (async () => {
-      // Save configuration to storage
       let config = Object.assign({}, formData, {
         erc20Contracts: JSON.parse(formData.erc20Contracts),
       }) as LightClientVerifierInitArgs;
@@ -61,7 +63,6 @@ const Popup = () => {
   };
 
   const handleReset = () => {
-    // Reset configuration to defaults
     (async () => {
       setFormData(initialFormData);
       let config = Object.assign({}, initialFormData, {
@@ -104,6 +105,22 @@ const Popup = () => {
 
           <div className='form-group'>
             <label htmlFor='beaconApiUrl'>Beacon API URL:</label>
+            <Tippy
+              interactive={true}
+              content={
+                <span>
+                  Server implementing&nbsp;
+                  <a
+                    onClick={() => chrome.tabs.create({ url: 'https://ethereum.github.io/beacon-APIs/#/Beacon' })}
+                    href='https://ethereum.github.io/beacon-APIs/#/Beacon'
+                  >
+                    light client api routes
+                  </a>
+                </span>
+              }
+            >
+              <a className='text-muted'>&nbsp;(What is this?)</a>
+            </Tippy>
             <input
               className='form-control'
               type='text'
@@ -128,6 +145,22 @@ const Popup = () => {
 
           <div className='form-group'>
             <label htmlFor='initialCheckpoint'>Initial Checkpoint:</label>
+            <Tippy
+              interactive={true}
+              content={
+                <span>
+                  See the&nbsp;
+                  <a
+                    onClick={() => chrome.tabs.create({ url: 'https://eth-clients.github.io/checkpoint-sync-endpoints/' })}
+                    href='https://eth-clients.github.io/checkpoint-sync-endpoints/'
+                  >
+                    list of checkpoint providers
+                  </a>
+                </span>
+              }
+            >
+              <a className='text-muted'>&nbsp;(What is this?)</a>
+            </Tippy>
             <input
               className='form-control'
               type='text'
