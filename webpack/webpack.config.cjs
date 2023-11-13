@@ -2,9 +2,11 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const webpack = require('webpack');
 module.exports = {
   mode: 'production',
+  externals: { 'node:http': '{}' },
   entry: {
     content: path.resolve(__dirname, '..', 'src', 'pages', 'content', 'index.ts'),
     background: path.resolve(__dirname, '..', 'src', 'pages', 'background', 'index.ts'),

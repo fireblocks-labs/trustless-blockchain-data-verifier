@@ -1,0 +1,13 @@
+diff --git a/node_modules/@lodestar/prover/lib/utils/conversion.js b/node_modules/@lodestar/prover/lib/utils/conversion.js
+index f96ad5d..697a06b 100644
+--- a/node_modules/@lodestar/prover/lib/utils/conversion.js
++++ b/node_modules/@lodestar/prover/lib/utils/conversion.js
+@@ -15,7 +15,7 @@ export function bufferToHex(buffer) {
+     return "0x" + Buffer.from(buffer).toString("hex");
+ }
+ export function hexToBuffer(val) {
+-    return Buffer.from(val.replace("0x", ""), "hex");
++    return Buffer.from((val.length % 2 ? "0" : "") + val.replace("0x", ""), "hex");
+ }
+ export function padLeft(v, length) {
+     const buf = Buffer.alloc(length);
