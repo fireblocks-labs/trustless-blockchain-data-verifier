@@ -6,6 +6,7 @@ export const Actions = {
   headerUpdate: 'headerUpdate',
   verifyBalances: 'verifyBalances',
   configUpdate: 'configUpdate',
+  wakeUp: 'wakeUp',
 };
 
 export const configStorageName = 'config';
