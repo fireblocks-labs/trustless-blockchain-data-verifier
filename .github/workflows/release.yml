@@ -43,7 +43,6 @@ jobs:
           npm install -g chrome-webstore-upload-cli
           chrome-webstore-upload upload \\
             --source dist \\
-            --extension-id ${{ env.EXTENSION_ID }} \\
             --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
             --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
             --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
