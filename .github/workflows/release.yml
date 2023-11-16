@@ -41,9 +41,5 @@ jobs:
           git commit -m "Release $tag"
           npm run build
           npm install -g chrome-webstore-upload-cli
-          chrome-webstore-upload upload \\
-            --source dist \\
-            --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
-            --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
-            --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
+          chrome-webstore-upload upload --source dist --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
           git push
