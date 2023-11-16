@@ -1,7 +1,7 @@
 {
   "name": "light-client-verifier",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "engines": {
