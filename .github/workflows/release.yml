@@ -16,7 +16,6 @@ jobs:
       - name: Build and upload extension to Chrome Web Store
         uses: actions/setup-node@v2
         with:
-          cache: 'npm'
           node-version: '18.12.1'
       - run: |
           npm install
