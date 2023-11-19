@@ -1,20 +1,14 @@
-import { fromHexString, toHexString } from '@chainsafe/ssz';
-import { DefaultStateManager } from '@ethereumjs/statemanager';
-import { defaultAbiCoder } from '@ethersproject/abi';
-import { Api, ApiError, getClient } from '@lodestar/api';
-import { createChainForkConfig } from '@lodestar/config';
-import { genesisData as networkGenesis, NetworkName, networksChainConfig } from '@lodestar/config/networks';
-import { Lightclient, LightclientEvent, RunStatusCode } from '@lodestar/light-client';
-import { LightClientRestTransport } from '@lodestar/light-client/transport';
-import { getLcLoggerConsole } from '@lodestar/light-client/utils';
-import { allForks, bellatrix, ssz } from '@lodestar/types';
-import { keccak256, toBuffer } from 'ethereumjs-util';
+import { NetworkName } from '@lodestar/config/networks';
+import { LightclientEvent } from '@lodestar/light-client';
+
+import { allForks } from '@lodestar/types';
 import { formatUnits } from 'ethers';
 import Web3 from 'web3';
-import { hexToNumberString, numberToHex } from 'web3-utils';
 import { createVerifiedExecutionProvider, LCTransport, Web3jsProvider, ProofProvider } from '@lodestar/prover';
+import { hexToNumberString } from 'web3-utils';
+import { Multicall, ContractCallResults, ContractCallContext } from 'ethereum-multicall';
 
-const balanceOfABI = [
+const ERC20ABI = [
   {
     constant: true,
     inputs: [
@@ -32,6 +26,19 @@ const balanceOfABI = [
     ],
     payable: false,
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: 'decimals',
+    outputs: [
+      {
+        name: 'decimals',
+        type: 'uint8',
+      },
+    ],
+    payable: false,
     type: 'function',
   },
 ];
@@ -52,7 +59,6 @@ export type LightClientVerifierInitArgs = {
   network: NetworkName;
   elRpcUrl: string;
   beaconApiUrl: string;
-  erc20Contracts: Record<string, ERC20Contract>;
   initialCheckpoint: string;
 };
 
@@ -94,8 +100,6 @@ export type AccountsToVerify = Record<string, AccountBalance>;
 
 export class LightClientVerifier {
   private web3: Web3 | undefined;
-  private stateManager: DefaultStateManager;
-  private erc20Contracts: Record<string, ERC20Contract>;
   private network: NetworkName;
   private beaconApiUrl: string;
   private initialCheckpoint: string;
@@ -103,13 +107,11 @@ export class LightClientVerifier {
   public provider: Web3jsProvider | undefined;
   public proofProvider: ProofProvider | undefined;
 
-  constructor({ network, elRpcUrl, beaconApiUrl, erc20Contracts, initialCheckpoint }: LightClientVerifierInitArgs) {
+  constructor({ network, elRpcUrl, beaconApiUrl, initialCheckpoint }: LightClientVerifierInitArgs) {
     this.elRpcUrl = elRpcUrl;
     this.beaconApiUrl = beaconApiUrl;
     this.network = network;
-    this.erc20Contracts = erc20Contracts;
     this.initialCheckpoint = initialCheckpoint;
-    this.stateManager = new DefaultStateManager();
   }
 
   public async verifyBalances(
@@ -119,14 +121,8 @@ export class LightClientVerifier {
   ): Promise<BalanceVerificationResult> {
     const accountsResult: Record<string, BalanceComparisonAtBlock> = {};
     for (const [address, balance] of Object.entries(accountsToVerify)) {
-      const matchingContracts: ERC20Contract[] = [];
-      Object.entries(this.erc20Contracts).forEach(([address, erc20Contract]) => {
-        if (Object.keys(balance.erc20Balances).includes(address)) {
-          matchingContracts.push(erc20Contract);
-        }
-      });
-
-      const accountResult = await this.fetchAndVerifyAccount(address, matchingContracts);
+      const erc20Addresses: string[] = Object.keys(balance.erc20Balances);
+      const accountResult = await this.fetchAndVerifyAccount(address, erc20Addresses);
       const balanceComparisonResult = this.compareBalances(
         balance,
         accountResult?.balance,
@@ -213,13 +209,14 @@ export class LightClientVerifier {
     this.provider = provider;
     this.proofProvider = proofProvider;
     this.web3 = new Web3(provider);
+    await this.waitForClientToStart();
   }
 
   public async stop() {
     await this.proofProvider?.lightClient?.stop();
   }
 
-  private async waitForClientStarted(): Promise<void> {
+  private async waitForClientToStart(): Promise<void> {
     await this.proofProvider?.waitToBeReady();
   }
 
@@ -227,8 +224,8 @@ export class LightClientVerifier {
     this.proofProvider?.lightClient!.emitter.on(LightclientEvent.lightClientOptimisticHeader, handler);
   }
 
-  private async fetchAndVerifyAccount(address: string, erc20Contracts: ERC20Contract[]) {
-    await this.waitForClientStarted();
+  private async fetchAndVerifyAccount(address: string, erc20Contracts: string[]) {
+    await this.waitForClientToStart();
     const verifiedAccount = await this.fetchAndVerifyAddressBalances({
       address,
       erc20Contracts,
@@ -242,25 +239,83 @@ export class LightClientVerifier {
     erc20Contracts,
   }: {
     address: string;
-    erc20Contracts: ERC20Contract[];
+    erc20Contracts: string[];
   }): Promise<VerifiedAccount> {
-    const ethBalance = await this.web3!.eth.getBalance(address);
-    const erc20Balances: Record<string, VerifiedBalance> = {};
-    for (const erc20Contract of erc20Contracts) {
-      const contract = new this.web3!.eth.Contract(balanceOfABI, erc20Contract.contractAddress, { dataInputFill: 'data' });
-      console.log(contract.methods.balanceOf);
-      let balance = await contract.methods.balanceOf().call();
-      console.log(balance);
-      // balance = parseFloat(formatUnits(hexToNumberString(contractBalance, erc20Contract.decimals)));
-      erc20Balances[erc20Contract.contractAddress] = { balance: 0, verified: true };
+    let ethBalance;
+    try {
+      let balance = await this.web3!.eth.getBalance(address);
+      console.log('eth', balance);
+      ethBalance = {
+        balance: Number(this.web3!.utils.fromWei(balance, 'ether')),
+        verified: true,
+      };
+    } catch (e) {
+      console.log('ERROR eth balance', e);
+      ethBalance = {
+        balance: 0,
+        verified: false,
+      };
     }
+    const multicall = new Multicall({
+      web3Instance: this.web3,
+      tryAggregate: true,
+      multicallCustomContractAddress: '0xca11bde05977b3631167028862be2a173976ca11', // Getting multicall address from network fails
+    });
+
+    const contractCallContext: ContractCallContext[] = erc20Contracts.map((erc20ContractAddress) => {
+      return {
+        reference: erc20ContractAddress,
+        contractAddress: erc20ContractAddress,
+        abi: ERC20ABI,
+        calls: [
+          { reference: 'balanceOf', methodName: 'balanceOf', methodParameters: [address] },
+          { reference: 'decimals', methodName: 'decimals', methodParameters: [] },
+        ],
+      };
+    });
+    const erc20Balances: Record<string, VerifiedBalance> = {};
+    const results: ContractCallResults = await multicall.call(contractCallContext);
+
+    for (const key of Object.keys(results.results)) {
+      const result = results.results[key];
+      const erc20ContractAddress = key;
+      console.log(erc20ContractAddress, result);
+      if (result && result.callsReturnContext) {
+        // @ts-ignore
+        const balanceResult = result.callsReturnContext.find((call) => call.reference === 'balanceOf');
+        // @ts-ignore
+        const decimalsResult = result.callsReturnContext.find((call) => call.reference === 'decimals');
+
+        if (balanceResult?.success && decimalsResult?.success) {
+          const decimals = decimalsResult?.returnValues[0];
+          const balance = parseFloat(formatUnits(hexToNumberString(balanceResult?.returnValues[0].hex), decimals));
+          console.log('contract', erc20ContractAddress, balance);
+          erc20Balances[erc20ContractAddress] = { balance: balance, verified: true };
+        } else {
+          erc20Balances[erc20ContractAddress] = { balance: 0, verified: false };
+        }
+      }
+    }
+
+    // const erc20Balances: Record<string, VerifiedBalance> = {};
+    // for (const erc20ContractAddress of erc20Contracts) {
+    //   const contract = new this.web3!.eth.Contract(ERC20ABI, erc20ContractAddress, { dataInputFill: 'data' });
+    //   try {
+    //     // @ts-ignore
+    //     let balance = (await contract.methods.balanceOf(address).call()) as BigNumberish;
+    //     const decimals = (await contract.methods.decimals().call()) as Numeric;
+    //     console.log('contract', erc20ContractAddress, balance);
+    //     balance = parseFloat(formatUnits(balance, decimals));
+    //     erc20Balances[erc20ContractAddress] = { balance: balance, verified: true };
+    //   } catch (e) {
+    //     console.log('ERROR erc20 balance', e);
+    //     erc20Balances[erc20ContractAddress] = { balance: 0, verified: false };
+    //   }
+    // }
 
     return {
       balance: {
-        ethBalance: {
-          balance: Number(this.web3!.utils.fromWei(ethBalance, 'ether')),
-          verified: true,
-        },
+        ethBalance,
         erc20Balances,
       },
       blockNumber: this.proofProvider?.getStatus().latest!,

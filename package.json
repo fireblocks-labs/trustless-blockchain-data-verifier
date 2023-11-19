@@ -19,14 +19,23 @@
   },
   "author": "",
   "license": "ISC",
+  "overrides": {
+    "@ethereumjs/block": "^5.0.1",
+    "@ethereumjs/blockchain": "^7.0.1",
+    "@ethereumjs/client": "^0.9.0",
+    "@ethereumjs/common": "^4.1.0",
+    "@ethereumjs/evm": "^2.1.0",
+    "@ethereumjs/genesis": "^0.2.0",
+    "@ethereumjs/rlp": "^5.0.1",
+    "@ethereumjs/statemanager": "^2.1.0",
+    "@ethereumjs/trie": "^6.0.1",
+    "@ethereumjs/tx": "^5.1.0",
+    "@ethereumjs/util": "^9.0.1",
+    "@ethereumjs/vm": "^7.1.0"
+  },
   "dependencies": {
-    "@chainsafe/ssz": "^0.13.0",
-    "@ethereumjs/statemanager": "^2.0.0",
-    "@ethereumjs/trie": "^6.0.0",
-    "@ethersproject/abi": "^5.7.0",
-    "@lodestar/api": "^1.11.1",
-    "@lodestar/config": "^1.11.1",
-    "@lodestar/light-client": "^1.11.1",
+    "@lodestar/config": "^1.12.0",
+    "@lodestar/light-client": "^1.12.0",
     "@lodestar/prover": "^1.12.0",
     "@lodestar/types": "^1.12.0",
     "@tippyjs/react": "^4.2.6",
@@ -34,12 +43,12 @@
     "assert": "^2.0.0",
     "bignumber.js": "^9.1.2",
     "buffer": "^6.0.3",
-    "ethereumjs-util": "^7.1.5",
+    "ethereum-multicall": "^2.21.0",
     "ethers": "^6.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tooltip": "^5.22.0",
-    "web3": "^4.2.2",
+    "web3": "^4.2.0",
     "web3-utils": "^4.0.6"
   },
   "devDependencies": {
@@ -86,7 +95,6 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-cli": "^5.1.4"
   }
 }

@@ -5,8 +5,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const webpack = require('webpack');
 module.exports = {
+  devtool: 'inline-source-map',
   mode: 'production',
-  externals: { 'node:http': '{}' },
+  externals: {
+    'node:http': '{}',
+    'node:url': '{}',
+    'node:path': '{}',
+    'node:https': '{}',
+    '@chainsafe/blst': '{}',
+    'http-proxy': '{}',
+  },
   entry: {
     content: path.resolve(__dirname, '..', 'src', 'pages', 'content', 'index.ts'),
     background: path.resolve(__dirname, '..', 'src', 'pages', 'background', 'index.ts'),
@@ -30,6 +38,7 @@ module.exports = {
       zlib: false,
       fs: false,
       events: false,
+      node: false,
     },
   },
   module: {
@@ -70,7 +79,13 @@ module.exports = {
       cache: false,
     }),
     new webpack.DefinePlugin({
-      process: { argv: [], env: {} },
+      process: {
+        argv: [],
+        env: {},
+        nextTick: function () {
+          return null;
+        },
+      },
     }),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
