@@ -42,7 +42,9 @@ let globalLightClientVerifier: LightClientVerifier;
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('Got message', message);
-  if (message.action === Actions.verifyBalances) {
+  if (message.action === Actions.wakeUp) {
+    console.log('Got wakeUp message');
+  } else if (message.action === Actions.verifyBalances) {
     if (globalLightClientVerifier) {
       globalLightClientVerifier
         .verifyBalances(message.accountsToVerify, message.ethRoundingDigits, message.tokenRoundingDigits)

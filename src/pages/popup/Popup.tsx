@@ -71,7 +71,6 @@ const Popup = () => {
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>Configuration</h1>
         <form id='config-form' onSubmit={handleSubmit}>
           <div className='form-group'>
             <label htmlFor='network'>Network:</label>
@@ -152,12 +151,9 @@ const Popup = () => {
               onChange={handleInputChange}
             />
           </div>
-
-          <div></div>
-
-          <div>
-            <input className='btn btn-primary' type='submit' value='Save' />
-            <button className='btn btn-secondary' type='button' onClick={handleReset}>
+          <div className='form-group'>
+            <input className='btn btn-primary form-control mb-2' type='submit' value='Save' />
+            <button className='btn btn-secondary form-control' type='button' onClick={handleReset}>
               Reset Configuration
             </button>
           </div>

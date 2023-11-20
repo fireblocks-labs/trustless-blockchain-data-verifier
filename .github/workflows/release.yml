@@ -13,12 +13,17 @@ jobs:
       EXTENSION_ID: lamobknkahhlgennggjjphcdfndjkafj
 
     steps:
-      - name: Build and upload extension to Chrome Web Store
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup node
         uses: actions/setup-node@v2
         with:
           cache: 'npm'
           node-version: '18.12.1'
-      - run: |
+
+      - name: Build and upload extension to Chrome Web Store
+        run: |
           npm install
           initialTag=${{ github.event.release.tag_name }}
           tag="${initialTag//[v]/}"
@@ -36,10 +41,5 @@ jobs:
           git commit -m "Release $tag"
           npm run build
           npm install -g chrome-webstore-upload-cli
-          chrome-webstore-upload upload \\
-            --source dist \\
-            --extension-id ${{ env.EXTENSION_ID }} \\
-            --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
-            --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
-            --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
+          chrome-webstore-upload upload --source dist --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
           git push

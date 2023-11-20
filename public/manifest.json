@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Trustless Blockchain Data Verifier (Beta)",
   "description": "Verify blockchain data presented at popular websites using Light Client technology",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "action": {
     "default_popup": "popup.html"
   },
@@ -17,11 +17,19 @@
   },
   "content_scripts": [
     {
-      "js": ["content.js"],
-      "matches": ["https://etherscan.io/tokenholdings*", "https://etherscan.io/address*", "https://portfolio.metamask.io/"]
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "https://etherscan.io/tokenholdings*",
+        "https://etherscan.io/address*",
+        "https://portfolio.metamask.io/"
+      ]
     }
   ],
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "service_worker": "background.js"
   }
