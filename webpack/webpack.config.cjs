@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const webpack = require('webpack');
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   mode: 'production',
   externals: {
     'node:http': '{}',

@@ -1,4 +1,4 @@
-import { LightClientVerifierInitArgs, LightClientVerifier } from '../../LightClientVerifier';
+import { LightClientVerifier } from '../../LightClientVerifier';
 import { Actions, configStorageName, runningStorageName, initialConfig } from '../../common';
 import { getStorageItem, setStorageItem, setStorageData } from '../../storage';
 

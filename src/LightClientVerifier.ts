@@ -106,6 +106,7 @@ export class LightClientVerifier {
   private elRpcUrl: string;
   public provider: Web3jsProvider | undefined;
   public proofProvider: ProofProvider | undefined;
+  private multicall: Multicall | undefined;
 
   constructor({ network, elRpcUrl, beaconApiUrl, initialCheckpoint }: LightClientVerifierInitArgs) {
     this.elRpcUrl = elRpcUrl;
@@ -209,6 +210,11 @@ export class LightClientVerifier {
     this.provider = provider;
     this.proofProvider = proofProvider;
     this.web3 = new Web3(provider);
+    this.multicall = new Multicall({
+      web3Instance: this.web3,
+      tryAggregate: true,
+      multicallCustomContractAddress: '0xca11bde05977b3631167028862be2a173976ca11', // Getting multicall address from network fails
+    });
     await this.waitForClientToStart();
   }
 
@@ -244,23 +250,17 @@ export class LightClientVerifier {
     let ethBalance;
     try {
       let balance = await this.web3!.eth.getBalance(address);
-      console.log('eth', balance);
       ethBalance = {
         balance: Number(this.web3!.utils.fromWei(balance, 'ether')),
         verified: true,
       };
     } catch (e) {
-      console.log('ERROR eth balance', e);
       ethBalance = {
         balance: 0,
         verified: false,
       };
     }
-    const multicall = new Multicall({
-      web3Instance: this.web3,
-      tryAggregate: true,
-      multicallCustomContractAddress: '0xca11bde05977b3631167028862be2a173976ca11', // Getting multicall address from network fails
-    });
+    const erc20Balances: Record<string, VerifiedBalance> = {};
 
     const contractCallContext: ContractCallContext[] = erc20Contracts.map((erc20ContractAddress) => {
       return {
@@ -273,13 +273,12 @@ export class LightClientVerifier {
         ],
       };
     });
-    const erc20Balances: Record<string, VerifiedBalance> = {};
-    const results: ContractCallResults = await multicall.call(contractCallContext);
+
+    const results: ContractCallResults = await this.multicall!.call(contractCallContext);
 
     for (const key of Object.keys(results.results)) {
       const result = results.results[key];
       const erc20ContractAddress = key;
-      console.log(erc20ContractAddress, result);
       if (result && result.callsReturnContext) {
         // @ts-ignore
         const balanceResult = result.callsReturnContext.find((call) => call.reference === 'balanceOf');
@@ -289,7 +288,6 @@ export class LightClientVerifier {
         if (balanceResult?.success && decimalsResult?.success) {
           const decimals = decimalsResult?.returnValues[0];
           const balance = parseFloat(formatUnits(hexToNumberString(balanceResult?.returnValues[0].hex), decimals));
-          console.log('contract', erc20ContractAddress, balance);
           erc20Balances[erc20ContractAddress] = { balance: balance, verified: true };
         } else {
           erc20Balances[erc20ContractAddress] = { balance: 0, verified: false };

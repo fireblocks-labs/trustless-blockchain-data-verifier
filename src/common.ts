@@ -12,7 +12,7 @@ export const runningStorageName = 'running';
 export const initialConfig: LightClientVerifierInitArgs = {
   network: 'mainnet',
   beaconApiUrl: 'https://lodestar-mainnet.chainsafe.io',
-  elRpcUrl: 'https://lodestar-mainnetrpc.chainsafe.io',
+  elRpcUrl: 'https://rpc.ankr.com/eth',
   initialCheckpoint: '0x7fd9dccecb5fc37db1b9a12607795d4777635aa10ac774a07e871086a004c775',
 };
 
