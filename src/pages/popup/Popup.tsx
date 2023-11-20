@@ -1,31 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import Tippy from '@tippyjs/react';
-import { Actions, configStorageName } from '../../common';
+import { Actions, configStorageName, initialConfig } from '../../common';
 import { getStorageItem, setStorageItem } from '../../storage';
-import erc20Contracts from '../../../public/erc20Contracts.json' assert { type: 'json' };
-import { LightClientVerifierInitArgs } from '../../LightClientVerifier';
+import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 const Popup = () => {
-  const initialFormData = {
-    network: 'mainnet',
-    beaconApiUrl: 'https://lodestar-mainnet.chainsafe.io',
-    elRpcUrl: 'https://lodestar-mainnetrpc.chainsafe.io',
-    initialCheckpoint: '0xf314332806af6d624de4ad01263a0e6ea41905465aaa81983cae627be3937fa3',
-    erc20Contracts: JSON.stringify(erc20Contracts),
-  };
+  const initialFormData = initialConfig;
 
   const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
     (async () => {
       const savedConfig = await getStorageItem(configStorageName);
-      if (savedConfig) {
-        let stringConfig = Object.assign({}, savedConfig, {
-          erc20Contracts: JSON.stringify(savedConfig.erc20Contracts),
-        });
-        setFormData(stringConfig);
-      }
+      setFormData(savedConfig);
     })();
   }, []);
 
@@ -40,9 +27,7 @@ const Popup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     (async () => {
-      let config = Object.assign({}, formData, {
-        erc20Contracts: JSON.parse(formData.erc20Contracts),
-      }) as LightClientVerifierInitArgs;
+      let config = formData;
       await setStorageItem(configStorageName, config);
       chrome.runtime.sendMessage({ action: Actions.configUpdate });
       console.log('Configuration saved:', config);
@@ -64,9 +49,7 @@ const Popup = () => {
   const handleReset = () => {
     (async () => {
       setFormData(initialFormData);
-      let config = Object.assign({}, initialFormData, {
-        erc20Contracts: JSON.parse(initialFormData.erc20Contracts),
-      }) as LightClientVerifierInitArgs;
+      let config = initialFormData;
       await setStorageItem(configStorageName, config);
       chrome.runtime.sendMessage({ action: Actions.configUpdate });
       console.log('Configuration reset to defaults');
@@ -165,17 +148,6 @@ const Popup = () => {
               id='initialCheckpoint'
               name='initialCheckpoint'
               value={formData.initialCheckpoint}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className='form-group' hidden>
-            <label htmlFor='erc20Contracts'>ERC20 Contracts:</label>
-            <textarea
-              className='form-control'
-              id='erc20Contracts'
-              name='erc20Contracts'
-              value={formData.erc20Contracts}
               onChange={handleInputChange}
             />
           </div>

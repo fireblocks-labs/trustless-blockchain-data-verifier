@@ -1,12 +1,12 @@
-import { LightClientVerifierInitArgs, LightClientVerifier } from '../../LightClientVerifier';
+import { LightClientVerifier } from '../../LightClientVerifier';
 import { Actions, configStorageName, runningStorageName, initialConfig } from '../../common';
 import { getStorageItem, setStorageItem, setStorageData } from '../../storage';
 
-chrome.runtime.onInstalled.addListener(function (details) {
-  if (details.reason === 'install' || details.reason === 'update') {
-    setStorageData({ [configStorageName]: initialConfig, [runningStorageName]: false });
-  }
-});
+// chrome.runtime.onInstalled.addListener(function (details) {
+//   if (details.reason === 'install' || details.reason === 'update') {
+//     setStorageData({ [configStorageName]: initialConfig, [runningStorageName]: false });
+//   }
+// });
 
 chrome.runtime.onStartup.addListener(async () => {
   main();
@@ -78,12 +78,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 async function main() {
-  await setStorageItem(runningStorageName, false);
-  let config = await getStorageItem(configStorageName);
-  if (!config) {
-    await setStorageItem(configStorageName, initialConfig);
-    config = initialConfig;
-  }
+  // await setStorageItem(runningStorageName, false);
+  // let config = await getStorageItem(configStorageName);
+  // if (!config) {
+  //   await setStorageItem(configStorageName, initialConfig);
+  //   config = initialConfig;
+  // }
+  setStorageData({ [configStorageName]: initialConfig, [runningStorageName]: false }); // TODO: Make onInstalled work properly
   globalLightClientVerifier = await initializeLightClientVerifier();
 }
 

@@ -1,5 +1,3 @@
-import erc20Contracts from '../public/erc20Contracts.json';
-
 import { LightClientVerifierInitArgs } from './LightClientVerifier';
 
 export const Actions = {
@@ -15,9 +13,8 @@ export const runningStorageName = 'running';
 export const initialConfig: LightClientVerifierInitArgs = {
   network: 'mainnet',
   beaconApiUrl: 'https://lodestar-mainnet.chainsafe.io',
-  elRpcUrl: 'https://lodestar-mainnetrpc.chainsafe.io',
-  initialCheckpoint: '0x8db70aac95f3a33616ab938e060fc7615b5e254634d13cd014a2c838fddc33a1',
-  erc20Contracts,
+  elRpcUrl: 'https://rpc.ankr.com/eth',
+  initialCheckpoint: '0x7fd9dccecb5fc37db1b9a12607795d4777635aa10ac774a07e871086a004c775',
 };
 
 export const ETH = 'ETH';
