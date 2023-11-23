@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Trustless Blockchain Data Verifier (Beta)",
   "description": "Verify blockchain data presented at popular websites using Light Client technology",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "action": {
     "default_popup": "popup.html"
   },

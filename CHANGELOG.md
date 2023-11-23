@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v0.0.7](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/compare/v0.0.1...v0.0.7)
+#### [v0.0.8](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/compare/v0.0.1...v0.0.8)
 
-> 16 November 2023
+> 20 November 2023
 
-- Make `chrome-webstore-upload` one-liner [`f637ed5`](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/commit/f637ed58c2b33b0956f405cc255db80dd79614e4)
+- feat: migrate to use lodestar prover [`#17`](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/pull/17)
 
 #### v0.0.1
 
