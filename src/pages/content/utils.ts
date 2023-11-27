@@ -1,20 +1,30 @@
 import { BalanceComparisonAtBlock } from '../../LightClientVerifier';
 import { getStorageItem } from '../../storage';
-import { runningStorageName, ETH } from '../../common';
+import { runningStatusStorageName, ETH, NetworkEnum } from '../../common';
 
 export const verifyingText = '⌛ Verifying...';
 
 export function delayMs(ms: number = 50) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-export async function waitForClientToStart(delay?: number): Promise<void> {
-  const running = await getStorageItem(runningStorageName);
-  if (running === true) {
+export async function waitForClientToStart(network: NetworkEnum, delay?: number): Promise<void> {
+  const runningStatus = await getStorageItem(runningStatusStorageName);
+  if (runningStatus[network] === true) {
     return; // Client has started; exit the function.
   } else {
     await delayMs(delay);
-    await waitForClientToStart();
+    await waitForClientToStart(network, delay);
   }
+}
+
+export async function waitForAllClientsToStart(delay?: number): Promise<void> {
+  const networks = Object.values(NetworkEnum);
+
+  await Promise.all(
+    networks.map(async (network) => {
+      await waitForClientToStart(network, delay);
+    }),
+  );
 }
 
 export function waitForElement(selector: string, document: Document) {

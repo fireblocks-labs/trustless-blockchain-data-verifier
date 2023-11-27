@@ -52,25 +52,27 @@ describe('EtherscanAddressPageHandler', function () {
   it('handleVerificationResponse', async function () {
     await handler.setup();
     const response = {
-      '0x790A2376A063BFE075B318Ddd1036e46558cD908': {
-        balanceComparisonResult: {
-          ethBalance: {
-            expected: 0.002728809697369,
-            returned: 0.002728809697369,
-            isEqual: true,
-            isVerified: true,
-          },
-          erc20Balances: {
-            '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': {
-              expected: 1,
-              returned: 1,
+      mainnet: {
+        '0x790A2376A063BFE075B318Ddd1036e46558cD908': {
+          balanceComparisonResult: {
+            ethBalance: {
+              expected: 0.002728809697369,
+              returned: 0.002728809697369,
               isEqual: true,
               isVerified: true,
             },
+            erc20Balances: {
+              '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': {
+                expected: 1,
+                returned: 1,
+                isEqual: true,
+                isVerified: true,
+              },
+            },
+            verified: true,
           },
-          verified: true,
+          blockNumber: 18377035,
         },
-        blockNumber: 18377035,
       },
     };
     handler.handleVerificationResponse(response);

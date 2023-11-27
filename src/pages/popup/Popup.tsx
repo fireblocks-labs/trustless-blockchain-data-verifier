@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Actions, configStorageName, initialConfig } from '../../common';
+import { Actions, configStorageName, initialConfig, NetworkEnum } from '../../common';
 import { getStorageItem, setStorageItem } from '../../storage';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 const Popup = () => {
-  const initialFormData = initialConfig;
+  const [selectedNetwork, setSelectedNetwork] = useState(NetworkEnum.MAINNET);
+  const initialFormData = initialConfig[selectedNetwork];
 
   const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
     (async () => {
       const savedConfig = await getStorageItem(configStorageName);
-      setFormData(savedConfig);
+      setFormData(savedConfig[selectedNetwork]);
     })();
-  }, []);
+  }, [selectedNetwork]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,16 +25,22 @@ const Popup = () => {
     });
   };
 
+  const handleNetworkChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const network = e.target.value as NetworkEnum;
+    setSelectedNetwork(network);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     (async () => {
-      let config = formData;
+      let config = await getStorageItem(configStorageName);
+      config[selectedNetwork] = formData;
       await setStorageItem(configStorageName, config);
-      chrome.runtime.sendMessage({ action: Actions.configUpdate });
+      chrome.runtime.sendMessage({ action: Actions.configUpdate, config });
       console.log('Configuration saved:', config);
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         if (tabs[0] && tabs[0].id) {
-          chrome.tabs.sendMessage(tabs[0].id, { action: Actions.configUpdate }, () => {
+          chrome.tabs.sendMessage(tabs[0].id, { action: Actions.configUpdate, config }, () => {
             if (
               chrome.runtime.lastError &&
               chrome.runtime.lastError.message !== 'The message port closed before a response was received.'
@@ -49,13 +56,14 @@ const Popup = () => {
   const handleReset = () => {
     (async () => {
       setFormData(initialFormData);
-      let config = initialFormData;
+      let config = await getStorageItem(configStorageName);
+      config[selectedNetwork] = formData;
       await setStorageItem(configStorageName, config);
-      chrome.runtime.sendMessage({ action: Actions.configUpdate });
-      console.log('Configuration reset to defaults');
+      chrome.runtime.sendMessage({ action: Actions.configUpdate, config });
+      console.log(`Configuration for network ${selectedNetwork} reset to default`);
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         if (tabs[0] && tabs[0].id) {
-          chrome.tabs.sendMessage(tabs[0].id, { action: Actions.configUpdate }, () => {
+          chrome.tabs.sendMessage(tabs[0].id, { action: Actions.configUpdate, config }, () => {
             if (
               chrome.runtime.lastError &&
               chrome.runtime.lastError.message !== 'The message port closed before a response was received.'
@@ -72,6 +80,16 @@ const Popup = () => {
     <div className='App'>
       <header className='App-header'>
         <form id='config-form' onSubmit={handleSubmit}>
+          <div className='form-group'>
+            <label htmlFor='network'>Select Network:</label>
+            <select className='form-control' id='network' name='network' value={selectedNetwork} onChange={handleNetworkChange}>
+              {Object.values(NetworkEnum).map((network) => (
+                <option key={network} value={network}>
+                  {network}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className='form-group'>
             <label htmlFor='network'>Network:</label>
             <input

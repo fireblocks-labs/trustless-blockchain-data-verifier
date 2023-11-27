@@ -1,6 +1,6 @@
 import { PageHandler } from '../../PageHandler';
-import { ETH } from '../../../../common';
-import { BalanceVerificationResult, AccountsToVerify } from '../../../../LightClientVerifier';
+import { ETH, NetworkEnum } from '../../../../common';
+import { BalanceVerificationResult, AccountsToVerifyAllNetworks, AccountBalance } from '../../../../LightClientVerifier';
 import { verifyingText } from '../../utils';
 export class EtherscanTokenholdingsPageHandler extends PageHandler {
   constructor(
@@ -67,9 +67,9 @@ export class EtherscanTokenholdingsPageHandler extends PageHandler {
     return row.cells[balanceColumnId].textContent;
   }
 
-  extractBalancesFromHTML() {
+  extractBalancesFromHTML(): AccountBalance {
     const erc20Balances: Record<string, number> = {};
-    let ethBalance;
+    let ethBalance = 0;
 
     for (let i = 1; i < this.table!.rows.length; i++) {
       const row = this.table!.rows[i];
@@ -137,18 +137,20 @@ export class EtherscanTokenholdingsPageHandler extends PageHandler {
     }
   }
 
-  getAccountsToVerify(): AccountsToVerify {
+  getAccountsToVerify(): AccountsToVerifyAllNetworks {
     const extractedData = this.extractBalancesFromHTML();
-    const accountsToVerify = {
-      [this.address!]: {
-        ethBalance: extractedData.ethBalance!,
-        erc20Balances: extractedData.erc20Balances,
+    const accountsToVerify: AccountsToVerifyAllNetworks = {
+      [NetworkEnum.MAINNET]: {
+        [this.address!]: {
+          ethBalance: extractedData.ethBalance,
+          erc20Balances: extractedData.erc20Balances,
+        },
       },
     };
     return accountsToVerify;
   }
 
   handleVerificationResponse(response: BalanceVerificationResult): void {
-    this.addVerificationStatusToPage(response[this.address!]);
+    this.addVerificationStatusToPage(response[NetworkEnum.MAINNET]![this.address!]);
   }
 }

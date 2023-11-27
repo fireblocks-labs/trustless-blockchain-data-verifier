@@ -1,5 +1,5 @@
 import { generateTokenToTextMap, verifyingText } from './utils';
-import { BalanceComparisonAtBlock, AccountsToVerify, BalanceVerificationResult } from '../../LightClientVerifier';
+import { BalanceComparisonAtBlock, AccountsToVerifyAllNetworks, BalanceVerificationResult } from '../../LightClientVerifier';
 import { Actions, verificationStatusElementId } from '../../common';
 
 export abstract class PageHandler {
@@ -18,7 +18,7 @@ export abstract class PageHandler {
 
   abstract updateVerificationStatus(tokenToTextMap: Record<string, string>): void;
 
-  abstract getAccountsToVerify(): AccountsToVerify;
+  abstract getAccountsToVerify(): AccountsToVerifyAllNetworks;
 
   abstract handleVerificationResponse(response: BalanceVerificationResult): void;
 

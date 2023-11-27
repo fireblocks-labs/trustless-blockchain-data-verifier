@@ -1,6 +1,6 @@
 import { PageHandler } from '../../PageHandler';
-import { ETH } from '../../../../common';
-import { BalanceVerificationResult, AccountsToVerify } from '../../../../LightClientVerifier';
+import { ETH, NetworkEnum } from '../../../../common';
+import { BalanceVerificationResult, AccountsToVerifyAllNetworks, AccountBalance } from '../../../../LightClientVerifier';
 import { verifyingText } from '../../utils';
 
 const etherscanAddressTokenRoundingDigits = 8; // Token balances on https://etherscan.io/address page are rounded to 8 digits after decimal point
@@ -11,6 +11,7 @@ export class EtherscanAddressPageHandler extends PageHandler {
     window: Window,
     public address?: string,
     private tokenList?: NodeListOf<Element>,
+    private network: NetworkEnum = NetworkEnum.MAINNET,
   ) {
     super(document, window, etherscanAddressTokenRoundingDigits, undefined);
   }
@@ -38,9 +39,9 @@ export class EtherscanAddressPageHandler extends PageHandler {
   getAddress(url: string): string | undefined {
     let match = url.match(/^https:\/\/etherscan\.io\/address\/(0x[0-9a-fA-F]+)/);
     if (!match) {
-      return document.getElementById('mainaddress')?.innerText
+      return document.getElementById('mainaddress')?.innerText;
     } else {
-      return match[1]
+      return match[1];
     }
   }
 
@@ -93,12 +94,10 @@ export class EtherscanAddressPageHandler extends PageHandler {
         }
       }
     }
-
-    return null;
   }
 
-  extractBalancesFromHTML() {
-    const ethBalance = this.getEthBalance();
+  extractBalancesFromHTML(): AccountBalance {
+    const ethBalance = this.getEthBalance()!;
 
     const erc20Balances: Record<string, number> = {};
     this.tokenList!.forEach((tokenElement) => {
@@ -144,18 +143,20 @@ export class EtherscanAddressPageHandler extends PageHandler {
     });
   }
 
-  getAccountsToVerify(): AccountsToVerify {
+  getAccountsToVerify(): AccountsToVerifyAllNetworks {
     const extractedData = this.extractBalancesFromHTML();
-    const accountsToVerify = {
-      [this.address!]: {
-        ethBalance: extractedData.ethBalance!,
-        erc20Balances: extractedData.erc20Balances,
+    const accountsToVerify: AccountsToVerifyAllNetworks = {
+      [NetworkEnum.MAINNET]: {
+        [this.address!]: {
+          ethBalance: extractedData.ethBalance,
+          erc20Balances: extractedData.erc20Balances,
+        },
       },
     };
     return accountsToVerify;
   }
 
   handleVerificationResponse(response: BalanceVerificationResult): void {
-    this.addVerificationStatusToPage(response[this.address!]);
+    this.addVerificationStatusToPage(response[NetworkEnum.MAINNET]![this.address!]);
   }
 }
