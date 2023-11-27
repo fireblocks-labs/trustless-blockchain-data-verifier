@@ -1,4 +1,5 @@
-import { NetworkName } from '@lodestar/config/networks';
+import { NetworkEnum } from './common';
+import { NetworkName } from '@lodestar/prover';
 import { LightclientEvent } from '@lodestar/light-client';
 
 import { allForks } from '@lodestar/types';
@@ -56,7 +57,7 @@ type VerifiedAccount = {
 };
 
 export type LightClientVerifierInitArgs = {
-  network: NetworkName;
+  network: NetworkEnum;
   elRpcUrl: string;
   beaconApiUrl: string;
   initialCheckpoint: string;
@@ -95,8 +96,15 @@ export type BalanceComparisonAtBlock = {
   blockNumber: number;
 };
 
-export type BalanceVerificationResult = Record<string, BalanceComparisonAtBlock>;
+export type BalanceVerificationResult = {
+  [network in NetworkEnum]?: Record<string, BalanceComparisonAtBlock>;
+};
+
 export type AccountsToVerify = Record<string, AccountBalance>;
+
+export type AccountsToVerifyAllNetworks = {
+  [network in NetworkEnum]?: AccountsToVerify;
+};
 
 export class LightClientVerifier {
   private web3: Web3 | undefined;
@@ -122,10 +130,10 @@ export class LightClientVerifier {
   ): Promise<BalanceVerificationResult> {
     const accountsResult: Record<string, BalanceComparisonAtBlock> = {};
     for (const [address, balance] of Object.entries(accountsToVerify)) {
-      const erc20Addresses: string[] = Object.keys(balance.erc20Balances);
+      const erc20Addresses: string[] = Object.keys(balance!.erc20Balances);
       const accountResult = await this.fetchAndVerifyAccount(address, erc20Addresses);
       const balanceComparisonResult = this.compareBalances(
-        balance,
+        balance!,
         accountResult?.balance,
         ethRoundingDigits,
         tokenRoundingDigits,
@@ -204,7 +212,7 @@ export class LightClientVerifier {
     const { provider, proofProvider } = createVerifiedExecutionProvider(new Web3.providers.HttpProvider(this.elRpcUrl), {
       transport: LCTransport.Rest,
       urls: [this.beaconApiUrl],
-      network: this.network,
+      network: this.network as NetworkName,
       wsCheckpoint: this.initialCheckpoint,
     });
     this.provider = provider;
@@ -294,22 +302,6 @@ export class LightClientVerifier {
         }
       }
     }
-
-    // const erc20Balances: Record<string, VerifiedBalance> = {};
-    // for (const erc20ContractAddress of erc20Contracts) {
-    //   const contract = new this.web3!.eth.Contract(ERC20ABI, erc20ContractAddress, { dataInputFill: 'data' });
-    //   try {
-    //     // @ts-ignore
-    //     let balance = (await contract.methods.balanceOf(address).call()) as BigNumberish;
-    //     const decimals = (await contract.methods.decimals().call()) as Numeric;
-    //     console.log('contract', erc20ContractAddress, balance);
-    //     balance = parseFloat(formatUnits(balance, decimals));
-    //     erc20Balances[erc20ContractAddress] = { balance: balance, verified: true };
-    //   } catch (e) {
-    //     console.log('ERROR erc20 balance', e);
-    //     erc20Balances[erc20ContractAddress] = { balance: 0, verified: false };
-    //   }
-    // }
 
     return {
       balance: {

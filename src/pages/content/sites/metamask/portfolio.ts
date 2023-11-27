@@ -1,6 +1,11 @@
 import { PageHandler } from '../../PageHandler';
-import { ETH } from '../../../../common';
-import { BalanceVerificationResult, AccountBalance, AccountsToVerify } from '../../../../LightClientVerifier';
+import { ETH, NetworkEnum } from '../../../../common';
+import {
+  BalanceVerificationResult,
+  AccountBalance,
+  AccountsToVerify,
+  AccountsToVerifyAllNetworks,
+} from '../../../../LightClientVerifier';
 import { verifyingText, delayMs } from '../../utils';
 import { waitForElement } from '../../utils';
 
@@ -230,18 +235,22 @@ export class MetaMaskPortfolioPageHandler extends PageHandler {
     }
   }
 
-  getAccountsToVerify(): AccountsToVerify {
+  getAccountsToVerify(): AccountsToVerifyAllNetworks {
     const extractedData = this.convertMetamaskAccountDataToAccountBalance(this.accountData!);
-    const accountsToVerify = {
-      [this.address!]: {
-        ethBalance: extractedData.ethBalance,
-        erc20Balances: extractedData.erc20Balances,
+    const accountsToVerify: AccountsToVerifyAllNetworks = {
+      [NetworkEnum.MAINNET]: {
+        // TODO: Set correct network
+        [this.address!]: {
+          ethBalance: extractedData.ethBalance,
+          erc20Balances: extractedData.erc20Balances,
+        },
       },
     };
     return accountsToVerify;
   }
 
   handleVerificationResponse(response: BalanceVerificationResult): void {
-    this.addVerificationStatusToPage(response[this.address!]);
+    // TODO: Set correct network
+    this.addVerificationStatusToPage(response[NetworkEnum.MAINNET]![this.address!]);
   }
 }

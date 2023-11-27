@@ -1,10 +1,9 @@
-import { configStorageName, runningStorageName } from './common';
-import { LightClientVerifierInitArgs } from './LightClientVerifier';
-// Define your storage data here
+import { configStorageName, runningStatusStorageName, ConfigType, NetworkEnum } from './common';
+
 export interface Storage {
-  [runningStorageName]: boolean;
-  [configStorageName]: LightClientVerifierInitArgs;
-} // eslint-disable-line
+  [runningStatusStorageName]: Record<NetworkEnum, boolean>;
+  [configStorageName]: ConfigType;
+}
 
 export function getStorageData(): Promise<Storage> {
   return new Promise((resolve, reject) => {

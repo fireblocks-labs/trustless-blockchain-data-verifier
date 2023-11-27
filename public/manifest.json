@@ -17,19 +17,17 @@
   },
   "content_scripts": [
     {
-      "js": [
-        "content.js"
-      ],
+      "js": ["content.js"],
       "matches": [
         "https://etherscan.io/tokenholdings*",
         "https://etherscan.io/address*",
+        "https://sepolia.etherscan.io/tokenholdings*",
+        "https://sepolia.etherscan.io/address*",
         "https://portfolio.metamask.io/"
       ]
     }
   ],
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage"],
   "background": {
     "service_worker": "background.js"
   }
