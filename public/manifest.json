@@ -21,9 +21,10 @@
       "matches": [
         "https://etherscan.io/tokenholdings*",
         "https://etherscan.io/address*",
-        "https://sepolia.etherscan.io/tokenholdings*",
         "https://sepolia.etherscan.io/address*",
-        "https://portfolio.metamask.io/"
+        "https://portfolio.metamask.io/",
+        "https://data.chain.link/",
+        "https://data.chain.link/ethereum/mainnet*"
       ]
     }
   ],

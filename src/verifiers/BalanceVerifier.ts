@@ -1,13 +1,8 @@
-import { NetworkEnum } from './common';
-import { NetworkName } from '@lodestar/prover';
-import { LightclientEvent } from '@lodestar/light-client';
-
-import { allForks } from '@lodestar/types';
 import { formatUnits } from 'ethers';
-import Web3 from 'web3';
-import { createVerifiedExecutionProvider, LCTransport, Web3jsProvider, ProofProvider } from '@lodestar/prover';
+import { NetworkEnum, ETH } from '../common';
 import { hexToNumberString } from 'web3-utils';
-import { Multicall, ContractCallResults, ContractCallContext } from 'ethereum-multicall';
+import { ContractCallResults, ContractCallContext } from 'ethereum-multicall';
+import { Verifier } from './Verifier';
 
 const ERC20ABI = [
   {
@@ -56,13 +51,6 @@ type VerifiedAccount = {
   blockNumber: number;
 };
 
-export type LightClientVerifierInitArgs = {
-  network: NetworkEnum;
-  elRpcUrl: string;
-  beaconApiUrl: string;
-  initialCheckpoint: string;
-};
-
 export type AccountBalance = {
   ethBalance: number;
   erc20Balances: Record<string, number>;
@@ -96,9 +84,7 @@ export type BalanceComparisonAtBlock = {
   blockNumber: number;
 };
 
-export type BalanceVerificationResult = {
-  [network in NetworkEnum]?: Record<string, BalanceComparisonAtBlock>;
-};
+export type BalanceVerificationResult = Record<string, BalanceComparisonAtBlock>;
 
 export type AccountsToVerify = Record<string, AccountBalance>;
 
@@ -106,28 +92,21 @@ export type AccountsToVerifyAllNetworks = {
   [network in NetworkEnum]?: AccountsToVerify;
 };
 
-export class LightClientVerifier {
-  private web3: Web3 | undefined;
-  private network: NetworkName;
-  private beaconApiUrl: string;
-  private initialCheckpoint: string;
-  private elRpcUrl: string;
-  public provider: Web3jsProvider | undefined;
-  public proofProvider: ProofProvider | undefined;
-  private multicall: Multicall | undefined;
+export type BalanceVerificationInput = {
+  accountsToVerify: AccountsToVerify;
+  ethRoundingDigits?: number;
+  tokenRoundingDigits?: number;
+};
 
-  constructor({ network, elRpcUrl, beaconApiUrl, initialCheckpoint }: LightClientVerifierInitArgs) {
-    this.elRpcUrl = elRpcUrl;
-    this.beaconApiUrl = beaconApiUrl;
-    this.network = network;
-    this.initialCheckpoint = initialCheckpoint;
+export class BalanceVerifier extends Verifier {
+  public async verify(dataToVerify: BalanceVerificationInput): Promise<BalanceVerificationResult> {
+    return this.verifyBalances(dataToVerify);
   }
-
-  public async verifyBalances(
-    accountsToVerify: AccountsToVerify,
-    ethRoundingDigits?: number,
-    tokenRoundingDigits?: number,
-  ): Promise<BalanceVerificationResult> {
+  public async verifyBalances({
+    accountsToVerify,
+    ethRoundingDigits,
+    tokenRoundingDigits,
+  }: BalanceVerificationInput): Promise<BalanceVerificationResult> {
     const accountsResult: Record<string, BalanceComparisonAtBlock> = {};
     for (const [address, balance] of Object.entries(accountsToVerify)) {
       const erc20Addresses: string[] = Object.keys(balance!.erc20Balances);
@@ -144,16 +123,6 @@ export class LightClientVerifier {
       };
     }
     return accountsResult;
-  }
-
-  private areNumbersEqualUpToNDigits(num1: number, num2: number, roundingDigits?: number): boolean {
-    if (!roundingDigits) {
-      return num1 === num2;
-    }
-    const multiplier = Math.pow(10, roundingDigits);
-    const roundedNum1 = Math.round(num1 * multiplier) / multiplier;
-    const roundedNum2 = Math.round(num2 * multiplier) / multiplier;
-    return roundedNum1 === roundedNum2;
   }
 
   public compareBalances(
@@ -208,38 +177,8 @@ export class LightClientVerifier {
     };
   }
 
-  public async initialize() {
-    const { provider, proofProvider } = createVerifiedExecutionProvider(new Web3.providers.HttpProvider(this.elRpcUrl), {
-      transport: LCTransport.Rest,
-      urls: [this.beaconApiUrl],
-      network: this.network as NetworkName,
-      wsCheckpoint: this.initialCheckpoint,
-    });
-    this.provider = provider;
-    this.proofProvider = proofProvider;
-    this.web3 = new Web3(provider);
-    this.multicall = new Multicall({
-      web3Instance: this.web3,
-      tryAggregate: true,
-      multicallCustomContractAddress: '0xca11bde05977b3631167028862be2a173976ca11', // Getting multicall address from network fails
-    });
-    await this.waitForClientToStart();
-  }
-
-  public async stop() {
-    await this.proofProvider?.lightClient?.stop();
-  }
-
-  private async waitForClientToStart(): Promise<void> {
-    await this.proofProvider?.waitToBeReady();
-  }
-
-  public setOptimisticHeaderHook(handler: (newHeader: allForks.LightClientHeader) => void) {
-    this.proofProvider?.lightClient!.emitter.on(LightclientEvent.lightClientOptimisticHeader, handler);
-  }
-
   private async fetchAndVerifyAccount(address: string, erc20Contracts: string[]) {
-    await this.waitForClientToStart();
+    await this.lightclient.waitForClientToStart();
     const verifiedAccount = await this.fetchAndVerifyAddressBalances({
       address,
       erc20Contracts,
@@ -257,9 +196,9 @@ export class LightClientVerifier {
   }): Promise<VerifiedAccount> {
     let ethBalance;
     try {
-      let balance = await this.web3!.eth.getBalance(address);
+      let balance = await this.lightclient.web3!.eth.getBalance(address);
       ethBalance = {
-        balance: Number(this.web3!.utils.fromWei(balance, 'ether')),
+        balance: Number(this.lightclient.web3!.utils.fromWei(balance, 'ether')),
         verified: true,
       };
     } catch (e) {
@@ -282,7 +221,7 @@ export class LightClientVerifier {
       };
     });
 
-    const results: ContractCallResults = await this.multicall!.call(contractCallContext);
+    const results: ContractCallResults = await this.lightclient.multicall!.call(contractCallContext);
 
     for (const key of Object.keys(results.results)) {
       const result = results.results[key];
@@ -308,7 +247,7 @@ export class LightClientVerifier {
         ethBalance,
         erc20Balances,
       },
-      blockNumber: this.proofProvider?.getStatus().latest!,
+      blockNumber: await this.lightclient.getLatestBlockNum(),
     };
   }
 }

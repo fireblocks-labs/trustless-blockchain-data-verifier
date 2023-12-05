@@ -1,10 +1,38 @@
-import { LightClientVerifierInitArgs } from './LightClientVerifier';
+import { ActionRejectedError } from 'ethers';
+import { LightClientInitArgs } from './LightClient';
 
-export const Actions = {
-  headerUpdate: 'headerUpdate',
-  verifyBalances: 'verifyBalances',
-  configUpdate: 'configUpdate',
-  wakeUp: 'wakeUp',
+export enum Actions {
+  headerUpdate = 'headerUpdate',
+  verify = 'verify',
+  configUpdate = 'configUpdate',
+  wakeUp = 'wakeUp',
+}
+
+export enum VerificationTypeEnum {
+  BALANCES = 'balances',
+  DATAFEEDS = 'datafeeds',
+}
+
+export type VerificationRequest = {
+  network: NetworkEnum;
+  type: VerificationTypeEnum;
+  dataToVerify: any;
+};
+
+export type VerificationResult = {
+  network: NetworkEnum;
+  type: VerificationTypeEnum;
+  result: any;
+  errorMsg: string;
+};
+
+export type VerificationRequestMessage = {
+  action: Actions;
+  requests: VerificationRequest[];
+};
+
+export type VerificationResponseMessage = {
+  results: VerificationResult[];
 };
 
 export const configStorageName = 'config';
@@ -16,20 +44,20 @@ export enum NetworkEnum {
 }
 
 export type RunningStatusType = Record<NetworkEnum, boolean>;
-export type ConfigType = Record<string, LightClientVerifierInitArgs>;
+export type ConfigType = Record<string, LightClientInitArgs>;
 
 export const initialConfig: ConfigType = {
   [NetworkEnum.MAINNET]: {
     network: NetworkEnum.MAINNET,
     beaconApiUrl: 'https://lodestar-mainnet.chainsafe.io',
     elRpcUrl: 'https://rpc.ankr.com/eth',
-    initialCheckpoint: '0xa6cbf3c03584f667535f96d01cf812a8969980d1bf833cd8b50d9d4c76d042c4',
+    initialCheckpoint: '0x1f0f89c698b3649728b0b0c4c7a6d2c43844a816333d748e081924fe2e8d755c',
   },
   [NetworkEnum.SEPOLIA]: {
     network: NetworkEnum.SEPOLIA,
     beaconApiUrl: 'https://lodestar-sepolia.chainsafe.io',
     elRpcUrl: 'https://rpc.ankr.com/eth_sepolia',
-    initialCheckpoint: '0xab875ab6dacfd60a71956012cbc7c00e5dd0326f592f273b632f83daaae86459',
+    initialCheckpoint: '0x7501fdbc70d80c6702025a4c90eaf7b06fa86d451963c9bf6fcbd2e083cbd12a',
   },
 };
 

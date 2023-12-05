@@ -1,4 +1,4 @@
-import { LightClientVerifier, AccountsToVerify, AccountsToVerifyAllNetworks } from '../../LightClientVerifier';
+import { LightClient } from '../../LightClient';
 import {
   Actions,
   configStorageName,
@@ -7,8 +7,15 @@ import {
   NetworkEnum,
   ConfigType,
   RunningStatusType,
+  VerificationRequest,
+  VerificationTypeEnum,
+  VerificationResult,
+  VerificationRequestMessage,
+  VerificationResponseMessage,
 } from '../../common';
 import { getStorageItem, setStorageItem, setStorageData } from '../../storage';
+import { BalanceVerifier } from '../../verifiers/BalanceVerifier';
+import { DatafeedVerifier } from '../../verifiers/DatafeedVerifier';
 
 // TODO: Make onInstalled work properly
 // chrome.runtime.onInstalled.addListener(function (details) {
@@ -21,9 +28,9 @@ chrome.runtime.onStartup.addListener(async () => {
   main();
 });
 
-async function initializeSingleLightClientVerifier(network: NetworkEnum, config: ConfigType) {
-  const lightClientVerifier = new LightClientVerifier(config[network]);
-  await lightClientVerifier.initialize();
+async function initializeSingleLightClient(network: NetworkEnum, config: ConfigType) {
+  const lightClient = new LightClient(config[network]);
+  await lightClient.initialize();
   const runningStatus = {
     ...(await getStorageItem(runningStatusStorageName)),
     [network]: true,
@@ -31,7 +38,7 @@ async function initializeSingleLightClientVerifier(network: NetworkEnum, config:
 
   await setStorageItem(runningStatusStorageName, runningStatus);
 
-  lightClientVerifier.setOptimisticHeaderHook(() => {
+  lightClient.setOptimisticHeaderHook(() => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       if (tabs[0] && tabs[0].id) {
         chrome.tabs.sendMessage(tabs[0].id, { action: Actions.headerUpdate }, () => {
@@ -46,68 +53,76 @@ async function initializeSingleLightClientVerifier(network: NetworkEnum, config:
     });
   });
 
-  return lightClientVerifier;
+  return lightClient;
 }
 
-async function initializeLightClientVerifiers() {
+async function initializeLightClients() {
   let config = await getStorageItem(configStorageName);
   if (!config) {
     config = initialConfig;
     await setStorageItem(configStorageName, config);
   }
-  let lightClientVerifiers: Record<string, LightClientVerifier> = {};
+  let lightClients: Record<string, LightClient> = {};
   for (const network of Object.values(NetworkEnum)) {
-    lightClientVerifiers[network] = await initializeSingleLightClientVerifier(network, config);
+    lightClients[network] = await initializeSingleLightClient(network, config);
   }
-  return lightClientVerifiers;
+  return lightClients;
 }
-let globalLightClientVerifiers: Record<string, LightClientVerifier>;
+let globalLightClients: Record<string, LightClient>;
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('Got message', message);
 
   if (message.action === Actions.wakeUp) {
     console.log('Got wakeUp message');
-  } else if (message.action === Actions.verifyBalances) {
-    const accountsByNetwork = message.accountsToVerify as AccountsToVerifyAllNetworks;
+  } else if (message.action === Actions.verify) {
+    const verficationRequestMessage = message as VerificationRequestMessage;
 
-    const results: Record<NetworkEnum, any> = Object.fromEntries(
-      Object.values(NetworkEnum).map((network) => [network, {}]),
-    ) as RunningStatusType;
+    let response: VerificationResponseMessage = { results: [] };
 
-    const promises: Promise<any>[] = Object.entries(accountsByNetwork).map(async ([network, accountsToVerify]) => {
-      if (Object.keys(accountsToVerify).length > 0) {
-        const lightClientVerifier = globalLightClientVerifiers[network];
-        let result;
-        if (lightClientVerifier) {
-          try {
-            result = await lightClientVerifier.verifyBalances(
-              accountsToVerify,
-              message.ethRoundingDigits,
-              message.tokenRoundingDigits,
-            );
-            console.log(`Verification result for ${network}`, result);
-          } catch (error) {
-            console.error(`Error during verification for ${network}`, error);
-            result = 'Error during verification';
-          }
+    const promises: Promise<any>[] = verficationRequestMessage.requests.map(async (verificationRequest) => {
+      const lightClient = globalLightClients[verificationRequest.network];
+      let result;
+      let errorMsg;
+
+      if (lightClient) {
+        let verifier;
+        if (verificationRequest.type == VerificationTypeEnum.BALANCES) {
+          verifier = new BalanceVerifier(lightClient);
+        } else if (verificationRequest.type == VerificationTypeEnum.DATAFEEDS) {
+          verifier = new DatafeedVerifier(lightClient);
         } else {
-          console.error(`LightClientVerifier not initialized for ${network}`);
-          result = 'LightClientVerifier not initialized';
+          errorMsg = `Wrong verification type ${verificationRequest.type}`;
         }
-        results[network as NetworkEnum] = result;
+
+        if (verifier) {
+          try {
+            result = await verifier!.verify(verificationRequest.dataToVerify);
+            console.log(`Verification result for ${verificationRequest.network}`, result);
+          } catch (error) {
+            console.log(`Error during verification for ${verificationRequest.network}`, error);
+            errorMsg = 'Error during verification';
+          }
+        }
+      } else {
+        console.error(`LightClientVerifier not initialized for ${verificationRequest.network}`);
+        errorMsg = `LightClient for network ${verificationRequest.network} not initialized`;
       }
+      response.results.push({
+        result,
+        network: verificationRequest.network,
+        type: verificationRequest.type,
+        errorMsg,
+      } as VerificationResult);
     });
+
     Promise.all(promises)
       .then(() => {
-        sendResponse(results);
+        sendResponse(response);
       })
       .catch((error) => {
-        console.error('Error during verification', error);
-        sendResponse('Error during verification');
+        console.log('Error sending response', error);
       });
-  } else if (message.action === Actions.configUpdate) {
-    // Your existing logic for config update...
   } else {
     sendResponse('Wrong action');
   }
@@ -126,11 +141,11 @@ async function main() {
     Object.values(NetworkEnum).map((network) => [network, false]),
   ) as RunningStatusType;
   setStorageData({ [configStorageName]: initialConfig, [runningStatusStorageName]: initialRunningStatus });
-  globalLightClientVerifiers = await initializeLightClientVerifiers();
+  globalLightClients = await initializeLightClients();
 }
 
 try {
   main();
 } catch (error) {
-  console.log('Initializing LightClientVerifier failed with error', error);
+  console.log('Initializing LightClients failed with error', error);
 }
