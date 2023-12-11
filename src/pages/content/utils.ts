@@ -16,6 +16,15 @@ export async function waitForClientToStart(network: NetworkEnum, delay?: number)
   }
 }
 
+export async function waitForElementText(element: Element, loadingText: string, delay?: number): Promise<void> {
+  if (element.textContent !== loadingText) {
+    return;
+  } else {
+    await delayMs(delay);
+    await waitForElementText(element, loadingText, delay);
+  }
+}
+
 export async function waitForAllClientsToStart(delay?: number): Promise<void> {
   const networks = Object.values(NetworkEnum);
 
@@ -26,14 +35,15 @@ export async function waitForAllClientsToStart(delay?: number): Promise<void> {
   );
 }
 
-export function waitForElement(selector: string, document: Document) {
+export function waitForElement(selector: string, document: Document, loadingText?: string) {
   return new Promise((resolve) => {
     if (document.querySelector(selector)) {
       return resolve(document.querySelector(selector));
     }
 
     const observer = new MutationObserver((mutations) => {
-      if (document.querySelector(selector)) {
+      const element = document.querySelector(selector);
+      if (element) {
         observer.disconnect();
         resolve(document.querySelector(selector));
       }

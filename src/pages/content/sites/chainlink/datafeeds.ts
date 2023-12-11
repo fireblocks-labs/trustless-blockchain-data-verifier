@@ -1,7 +1,7 @@
 import { PageHandler } from '../../page_handlers/PageHandler';
 import { VerificationTypeEnum, VerificationResponseMessage, VerificationRequest, NetworkEnum } from '../../../../common';
-import { delayMs, verifyingText } from '../../utils';
-import { waitForElement } from '../../utils';
+import { verifyingText } from '../../utils';
+import { waitForElement, waitForElementText } from '../../utils';
 import { Datafeed, DatafeedVerificationInput, DatafeedVerificationResults } from '../../../../verifiers/DatafeedVerifier';
 
 const chainlinkDatafeedRoundingDigits = 2;
@@ -44,6 +44,8 @@ export class ChainlinkDatafeedsPageHandler extends PageHandler {
   async _beforeRun() {
     // Wait for table to load
     await this.getDatafeedTable();
+    // Wait for table content to load
+    await waitForElementText(this.document.querySelector('table > tbody > tr > td:nth-child(3) > p')!, '...');
   }
 
   async setup() {
@@ -111,11 +113,11 @@ export class ChainlinkDatafeedsPageHandler extends PageHandler {
 
   async getDatafeedTable() {
     const datafeedTable = await waitForElement('table', this.document);
-    // Wait for table to get populated
-    await delayMs(2000);
+
     if (!datafeedTable) {
       throw Error('Datafeed table not found');
     }
+
     return datafeedTable as HTMLTableElement;
   }
 
