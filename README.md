@@ -72,13 +72,12 @@ The code in this repository is offered under the terms of the MIT License, as de
 
 ## Roadmap
 
-### Balance Verification
-
 | Website   | Page                                                                                              | Status |
 | --------- | ------------------------------------------------------------------------------------------------- | ------ |
 | Etherscan | [Token Holdings](https://etherscan.io/tokenholdings?a=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045) | ✅     |
 |           | [Address](https://etherscan.io/address/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045)                | ✅     |
 | MetaMask  | [MetaMask Portfolio](https://portfolio.metamask.io)                                               | ✅     |
+| Chainlink  | [Chainlink Pricefeeds](https://data.chain.link)                                                  | ✅     |
 
 ### NFT Ownership Verification
 
