@@ -3,12 +3,14 @@
 > **Warning**  
 > This extension is in a beta stage and should be used at your own risk.
 
-This extension uses the [Lodestar](https://github.com/ChainSafe/lodestar) light client implementation to verify blockchain information from centralized sources.
+This extension uses the [Lodestar prover](https://github.com/ChainSafe/lodestar/tree/unstable/packages/prover) package to verify blockchain information from centralized sources.
 
 The extension is available in the [chrome web store](https://chrome.google.com/webstore/detail/trustless-blockchain-data/lamobknkahhlgennggjjphcdfndjkafj).
 
+## Screenshots
 ![MetaMask Portfolio](images/MetamaskPortfolio.png?raw=true)
 ![Etherscan](images/Etherscan.png?raw=true)
+![Chainlink](images/Chainlink.png?raw=true)
 
 ## Usage
 Visit one of the supported websites, a verificaiton status indication should be added next to native ETH and token balances.
