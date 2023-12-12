@@ -7,8 +7,6 @@ This extension uses the [Lodestar](https://github.com/ChainSafe/lodestar) light 
 
 The extension is available in the [chrome web store](https://chrome.google.com/webstore/detail/trustless-blockchain-data/lamobknkahhlgennggjjphcdfndjkafj).
 
-- Currently only Ethereum balance verification is supported.
-
 ![MetaMask Portfolio](images/MetamaskPortfolio.png?raw=true)
 ![Etherscan](images/Etherscan.png?raw=true)
 
