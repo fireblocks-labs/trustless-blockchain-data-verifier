@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v0.0.8](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/compare/v0.0.1...v0.0.8)
+#### [v0.0.9](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/compare/v0.0.1...v0.0.9)
 
-> 20 November 2023
+> 12 December 2023
 
-- feat: migrate to use lodestar prover [`#17`](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/pull/17)
+- Update README.md [`42861a8`](https://github.com/fireblocks-labs/trustless-blockchain-data-verifier/commit/42861a81fee04f36b68c3087eab93b3f6c316324)
 
 #### v0.0.1
 
