@@ -1,4 +1,3 @@
-import { BalanceComparisonAtBlock } from '../../LightClientVerifier';
 import { getStorageItem } from '../../storage';
 import { runningStatusStorageName, ETH, NetworkEnum } from '../../common';
 
@@ -17,6 +16,15 @@ export async function waitForClientToStart(network: NetworkEnum, delay?: number)
   }
 }
 
+export async function waitForElementText(element: Element, loadingText: string, delay?: number): Promise<void> {
+  if (element.textContent !== loadingText) {
+    return;
+  } else {
+    await delayMs(delay);
+    await waitForElementText(element, loadingText, delay);
+  }
+}
+
 export async function waitForAllClientsToStart(delay?: number): Promise<void> {
   const networks = Object.values(NetworkEnum);
 
@@ -27,14 +35,15 @@ export async function waitForAllClientsToStart(delay?: number): Promise<void> {
   );
 }
 
-export function waitForElement(selector: string, document: Document) {
+export function waitForElement(selector: string, document: Document, loadingText?: string) {
   return new Promise((resolve) => {
     if (document.querySelector(selector)) {
       return resolve(document.querySelector(selector));
     }
 
     const observer = new MutationObserver((mutations) => {
-      if (document.querySelector(selector)) {
+      const element = document.querySelector(selector);
+      if (element) {
         observer.disconnect();
         resolve(document.querySelector(selector));
       }
@@ -45,42 +54,4 @@ export function waitForElement(selector: string, document: Document) {
       subtree: true,
     });
   });
-}
-
-export function generateTokenToTextMap(balanceComparisonAtBlock: BalanceComparisonAtBlock): Record<string, string> {
-  const tokenToTextMap: Record<string, string> = {};
-  const balancesData = balanceComparisonAtBlock.balanceComparisonResult;
-  const suffix = ` @ Block ${balanceComparisonAtBlock.blockNumber}`;
-  const verifiedText = '✅ Verified' + suffix;
-  const balanceNotEqText = '❌ Balance Mismatch';
-  const verificationFailedText = '❌ Verification Failed' + suffix;
-  if (balancesData.ethBalance.isVerified) {
-    if (balancesData.ethBalance.isEqual === true) {
-      tokenToTextMap[ETH] = verifiedText;
-    } else {
-      tokenToTextMap[ETH] =
-        balanceNotEqText + `, Diff ${balancesData.ethBalance.expected - balancesData.ethBalance.returned!}` + suffix;
-    }
-  } else {
-    tokenToTextMap[ETH] = verificationFailedText;
-  }
-
-  for (const address in balancesData.erc20Balances) {
-    if (balancesData.erc20Balances.hasOwnProperty(address)) {
-      const token = balancesData.erc20Balances[address];
-      if (token.returned === undefined) {
-        tokenToTextMap[address] = '❓ Unsupported Token';
-      } else if (token.isVerified) {
-        if (token.isEqual === true) {
-          tokenToTextMap[address] = verifiedText;
-        } else {
-          tokenToTextMap[address] = balanceNotEqText + `, Diff ${token.expected - token.returned!}` + suffix;
-        }
-      } else {
-        tokenToTextMap[address] = verificationFailedText;
-      }
-    }
-  }
-
-  return tokenToTextMap;
 }

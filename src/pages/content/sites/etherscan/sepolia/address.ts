@@ -1,5 +1,5 @@
-import { NetworkEnum } from '../../../../../common';
-import { AccountsToVerifyAllNetworks, BalanceVerificationResult } from '../../../../../LightClientVerifier';
+import { NetworkEnum, VerificationResponseMessage, VerificationTypeEnum } from '../../../../../common';
+import { BalanceVerificationResult, AccountsToVerifyAllNetworks } from '../../../../../verifiers/BalanceVerifier';
 
 import { EtherscanAddressPageHandler } from '../address';
 
@@ -30,7 +30,12 @@ export class SepoliaEtherscanAddressPageHandler extends EtherscanAddressPageHand
     return accountsToVerify;
   }
 
-  handleVerificationResponse(response: BalanceVerificationResult): void {
-    this.addVerificationStatusToPage(response[NetworkEnum.SEPOLIA]![this.address!]);
+  handleVerificationResponseMessage(response: VerificationResponseMessage): void {
+    response.results.map((result) => {
+      if (!result.errorMsg && result.network == NetworkEnum.SEPOLIA && result.type == VerificationTypeEnum.BALANCES) {
+        const balanceVerificationResult = result.result as BalanceVerificationResult;
+        this.addVerificationStatusToPage(balanceVerificationResult![this.address!]);
+      }
+    });
   }
 }

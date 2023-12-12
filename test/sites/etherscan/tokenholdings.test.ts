@@ -4,6 +4,7 @@ import { join } from 'path';
 const { JSDOM } = require('jsdom');
 
 import { EtherscanTokenholdingsPageHandler } from '../../../src/pages/content/sites/etherscan/tokenholdings';
+import { NetworkEnum, VerificationResponseMessage, VerificationTypeEnum } from '../../../src/common';
 
 const htmlTestFile = join(
   __dirname,
@@ -56,30 +57,36 @@ describe('EtherscanTokenholdingsPageHandler', function () {
   it('handleVerificationResponse', async function () {
     await handler.setup();
     const response = {
-      mainnet: {
-        '0x790A2376A063BFE075B318Ddd1036e46558cD908': {
-          balanceComparisonResult: {
-            ethBalance: {
-              expected: 0.002728809697369,
-              returned: 0.002728809697369,
-              isEqual: true,
-              isVerified: true,
-            },
-            erc20Balances: {
-              '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': {
-                expected: 1,
-                returned: 1,
-                isEqual: true,
-                isVerified: true,
+      results: [
+        {
+          network: NetworkEnum.MAINNET,
+          type: VerificationTypeEnum.BALANCES,
+          result: {
+            '0x790A2376A063BFE075B318Ddd1036e46558cD908': {
+              balanceComparisonResult: {
+                ethBalance: {
+                  expected: 0.002728809697369,
+                  returned: 0.002728809697369,
+                  isEqual: true,
+                  isVerified: true,
+                },
+                erc20Balances: {
+                  '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': {
+                    expected: 1,
+                    returned: 1,
+                    isEqual: true,
+                    isVerified: true,
+                  },
+                },
+                verified: true,
               },
+              blockNumber: 18377035,
             },
-            verified: true,
           },
-          blockNumber: 18377035,
         },
-      },
-    };
-    handler.handleVerificationResponse(response);
+      ],
+    } as VerificationResponseMessage;
+    handler.handleVerificationResponseMessage(response);
     const elements = document.querySelectorAll('#verification-status-id');
 
     expect(elements.length).toBe(2);

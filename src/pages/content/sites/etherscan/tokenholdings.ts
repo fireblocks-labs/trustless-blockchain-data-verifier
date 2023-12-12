@@ -1,8 +1,8 @@
-import { PageHandler } from '../../PageHandler';
-import { ETH, NetworkEnum } from '../../../../common';
-import { BalanceVerificationResult, AccountsToVerifyAllNetworks, AccountBalance } from '../../../../LightClientVerifier';
+import { ETH, NetworkEnum, VerificationResponseMessage, VerificationTypeEnum } from '../../../../common';
+import { BalanceVerificationResult, AccountsToVerifyAllNetworks, AccountBalance } from '../../../../verifiers/BalanceVerifier';
 import { verifyingText } from '../../utils';
-export class EtherscanTokenholdingsPageHandler extends PageHandler {
+import { BalancePageHandler } from '../../page_handlers/BalancePageHandler';
+export class EtherscanTokenholdingsPageHandler extends BalancePageHandler {
   constructor(
     document: Document,
     window: Window,
@@ -41,7 +41,7 @@ export class EtherscanTokenholdingsPageHandler extends PageHandler {
 
       if (hasTbodyMutation) {
         handler.setupVerificationStatus();
-        await handler.verifyBalancesAndUpdatePage();
+        await handler.verifyAndUpdatePage();
       }
     });
 
@@ -59,8 +59,8 @@ export class EtherscanTokenholdingsPageHandler extends PageHandler {
   }
 
   getAddressFromRow(row: HTMLTableRowElement) {
-    const symbolColumnId = this.findColumnIndex(this.table!, 'Contract Address');
-    return (row.cells[symbolColumnId].querySelector('a')?.getAttribute('href') || '').split('/').pop()?.toLowerCase();
+    const addressColumnId = this.findColumnIndex(this.table!, 'Contract Address');
+    return (row.cells[addressColumnId].querySelector('a')?.getAttribute('href') || '').split('/').pop()?.toLowerCase();
   }
   getBalanceFromRow(row: HTMLTableRowElement) {
     const balanceColumnId = this.findColumnIndex(this.table!, 'Quantity');
@@ -150,7 +150,12 @@ export class EtherscanTokenholdingsPageHandler extends PageHandler {
     return accountsToVerify;
   }
 
-  handleVerificationResponse(response: BalanceVerificationResult): void {
-    this.addVerificationStatusToPage(response[NetworkEnum.MAINNET]![this.address!]);
+  handleVerificationResponseMessage(response: VerificationResponseMessage): void {
+    response.results.map((result) => {
+      if (!result.errorMsg && result.network == NetworkEnum.MAINNET && result.type == VerificationTypeEnum.BALANCES) {
+        const balanceVerificationResult = result.result as BalanceVerificationResult;
+        this.addVerificationStatusToPage(balanceVerificationResult![this.address!]);
+      }
+    });
   }
 }

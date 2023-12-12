@@ -1,11 +1,11 @@
-import { PageHandler } from '../../PageHandler';
-import { ETH, NetworkEnum } from '../../../../common';
-import { BalanceVerificationResult, AccountsToVerifyAllNetworks, AccountBalance } from '../../../../LightClientVerifier';
+import { ETH, NetworkEnum, VerificationResponseMessage, VerificationTypeEnum } from '../../../../common';
+import { BalanceVerificationResult, AccountsToVerifyAllNetworks, AccountBalance } from '../../../../verifiers/BalanceVerifier';
 import { verifyingText } from '../../utils';
+import { BalancePageHandler } from '../../page_handlers/BalancePageHandler';
 
 const etherscanAddressTokenRoundingDigits = 8; // Token balances on https://etherscan.io/address page are rounded to 8 digits after decimal point
 
-export class EtherscanAddressPageHandler extends PageHandler {
+export class EtherscanAddressPageHandler extends BalancePageHandler {
   constructor(
     document: Document,
     window: Window,
@@ -156,7 +156,12 @@ export class EtherscanAddressPageHandler extends PageHandler {
     return accountsToVerify;
   }
 
-  handleVerificationResponse(response: BalanceVerificationResult): void {
-    this.addVerificationStatusToPage(response[NetworkEnum.MAINNET]![this.address!]);
+  handleVerificationResponseMessage(response: VerificationResponseMessage): void {
+    response.results.map((result) => {
+      if (!result.errorMsg && result.network == NetworkEnum.MAINNET && result.type == VerificationTypeEnum.BALANCES) {
+        const balanceVerificationResult = result.result as BalanceVerificationResult;
+        this.addVerificationStatusToPage(balanceVerificationResult![this.address!]);
+      }
+    });
   }
 }

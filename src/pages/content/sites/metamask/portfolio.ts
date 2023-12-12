@@ -1,13 +1,8 @@
-import { PageHandler } from '../../PageHandler';
-import { ETH, NetworkEnum } from '../../../../common';
-import {
-  BalanceVerificationResult,
-  AccountBalance,
-  AccountsToVerify,
-  AccountsToVerifyAllNetworks,
-} from '../../../../LightClientVerifier';
+import { ETH, NetworkEnum, VerificationResponseMessage, VerificationTypeEnum } from '../../../../common';
+import { BalanceVerificationResult, AccountsToVerifyAllNetworks, AccountBalance } from '../../../../verifiers/BalanceVerifier';
 import { verifyingText, delayMs } from '../../utils';
 import { waitForElement } from '../../utils';
+import { BalancePageHandler } from '../../page_handlers/BalancePageHandler';
 
 const MetamaskPortfolioRoundingDigits = 17; // Token balances on https://portfolio.metamask.io page are rounded to 17 digits after decimal point
 
@@ -40,7 +35,7 @@ interface MetamaskAccountData {
   ];
 }
 
-export class MetaMaskPortfolioPageHandler extends PageHandler {
+export class MetaMaskPortfolioPageHandler extends BalancePageHandler {
   constructor(
     document: Document,
     window: Window,
@@ -249,8 +244,12 @@ export class MetaMaskPortfolioPageHandler extends PageHandler {
     return accountsToVerify;
   }
 
-  handleVerificationResponse(response: BalanceVerificationResult): void {
-    // TODO: Set correct network
-    this.addVerificationStatusToPage(response[NetworkEnum.MAINNET]![this.address!]);
+  handleVerificationResponseMessage(response: VerificationResponseMessage): void {
+    response.results.map((result) => {
+      if (!result.errorMsg && result.network == NetworkEnum.MAINNET && result.type == VerificationTypeEnum.BALANCES) {
+        const balanceVerificationResult = result.result as BalanceVerificationResult;
+        this.addVerificationStatusToPage(balanceVerificationResult![this.address!]);
+      }
+    });
   }
 }
