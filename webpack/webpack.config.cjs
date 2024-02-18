@@ -12,6 +12,7 @@ module.exports = {
     'node:url': '{}',
     'node:path': '{}',
     'node:https': '{}',
+    'node:stream/web': '{}',
     '@chainsafe/blst': '{}',
     'http-proxy': '{}',
   },

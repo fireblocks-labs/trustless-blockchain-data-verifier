@@ -1,12 +1,12 @@
 name: Release
 on:
   release:
-    types: [ published ]
+    types: [published]
 env:
   GIT_TERMINAL_PROMPT: 1
 
 jobs:
- upload-extension:
+  upload-extension:
     name: Build and upload extension to Chrome Web Store
     runs-on: ubuntu-latest
     env:
@@ -41,5 +41,5 @@ jobs:
           git commit -m "Release $tag"
           npm run build
           npm install -g chrome-webstore-upload-cli
-          chrome-webstore-upload upload --source dist --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
+          chrome-webstore-upload upload --auto-publish --source dist --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
           git push

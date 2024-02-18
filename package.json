@@ -1,7 +1,7 @@
 {
   "name": "light-client-verifier",
   "type": "module",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "",
   "main": "index.js",
   "engines": {
@@ -36,7 +36,7 @@
   "dependencies": {
     "@lodestar/config": "^1.12.0",
     "@lodestar/light-client": "^1.12.0",
-    "@lodestar/prover": "^1.12.0",
+    "@lodestar/prover": "^1.15.1",
     "@lodestar/types": "^1.12.0",
     "@tippyjs/react": "^4.2.6",
     "@types/debug": "^4.1.8",
