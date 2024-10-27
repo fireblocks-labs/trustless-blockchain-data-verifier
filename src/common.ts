@@ -50,14 +50,14 @@ export const initialConfig: ConfigType = {
   [NetworkEnum.MAINNET]: {
     network: NetworkEnum.MAINNET,
     beaconApiUrl: 'https://lodestar-mainnet.chainsafe.io',
-    elRpcUrl: 'https://rpc.ankr.com/eth',
-    initialCheckpoint: '0x64672149c9c675b08248ce0c55812a4d438c822007d1dd0a52f2e641e6654804',
+    elRpcUrl: 'https://lodestar-mainnetrpc.chainsafe.io',
+    initialCheckpoint: '0xe0a5ba7c4169ba13e3f6e0f77d82d6b509a96f46f7579d7bc798f5ea4e71d5dd',
   },
   [NetworkEnum.SEPOLIA]: {
     network: NetworkEnum.SEPOLIA,
     beaconApiUrl: 'https://lodestar-sepolia.chainsafe.io',
-    elRpcUrl: 'https://rpc.ankr.com/eth_sepolia',
-    initialCheckpoint: '0xcbb4f810a0f0c55cfecfb778aae9b28f91ec5dd73101c79b3ee8ee3b62036f11',
+    elRpcUrl: 'https://lodestar-sepoliarpc.chainsafe.io',
+    initialCheckpoint: '0x7ae62ac7e5b781b7635210f605dcc95767e8bdaa2684c6ba1a6a578dc7296519',
   },
 };
 

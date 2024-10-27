@@ -2,9 +2,9 @@ import { NetworkEnum } from './common';
 import { NetworkName } from '@lodestar/prover';
 import { LightclientEvent } from '@lodestar/light-client';
 
-import { allForks } from '@lodestar/types';
+import { LightClientHeader } from '@lodestar/types';
 import Web3 from 'web3';
-import { createVerifiedExecutionProvider, LCTransport, Web3jsProvider, ProofProvider } from '@lodestar/prover';
+import { createVerifiedExecutionProvider, LCTransport, AnyWeb3Provider, ProofProvider } from '@lodestar/prover';
 import { Multicall } from 'ethereum-multicall';
 
 export type LightClientInitArgs = {
@@ -20,7 +20,7 @@ export class LightClient {
   private beaconApiUrl: string;
   private initialCheckpoint: string;
   private elRpcUrl: string;
-  public provider: Web3jsProvider | undefined;
+  public provider: AnyWeb3Provider | undefined;
   public proofProvider: ProofProvider | undefined;
   public multicall: Multicall | undefined;
 
@@ -57,7 +57,7 @@ export class LightClient {
     await this.proofProvider?.waitToBeReady();
   }
 
-  public setOptimisticHeaderHook(handler: (newHeader: allForks.LightClientHeader) => void) {
+  public setOptimisticHeaderHook(handler: (newHeader: LightClientHeader) => void) {
     this.proofProvider?.lightClient!.emitter.on(LightclientEvent.lightClientOptimisticHeader, handler);
   }
 
