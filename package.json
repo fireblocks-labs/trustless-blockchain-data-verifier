@@ -34,10 +34,10 @@
     "@ethereumjs/vm": "^7.1.0"
   },
   "dependencies": {
-    "@lodestar/config": "^1.22.0",
-    "@lodestar/light-client": "^1.22.0",
-    "@lodestar/prover": "^1.22.0",
-    "@lodestar/types": "^1.22.0",
+    "@lodestar/config": "^1.23.0",
+    "@lodestar/light-client": "^1.23.0",
+    "@lodestar/prover": "^1.23.0",
+    "@lodestar/types": "^1.23.0",
     "@tippyjs/react": "^4.2.6",
     "@types/debug": "^4.1.8",
     "assert": "^2.0.0",

@@ -51,13 +51,13 @@ export const initialConfig: ConfigType = {
     network: NetworkEnum.MAINNET,
     beaconApiUrl: 'https://lodestar-mainnet.chainsafe.io',
     elRpcUrl: 'https://lodestar-mainnetrpc.chainsafe.io',
-    initialCheckpoint: '0xe0a5ba7c4169ba13e3f6e0f77d82d6b509a96f46f7579d7bc798f5ea4e71d5dd',
+    initialCheckpoint: '0x304105ef531815d24abb052fe9a5b8faa1ad993f30e807d0b023b024497eca94',
   },
   [NetworkEnum.SEPOLIA]: {
     network: NetworkEnum.SEPOLIA,
     beaconApiUrl: 'https://lodestar-sepolia.chainsafe.io',
     elRpcUrl: 'https://lodestar-sepoliarpc.chainsafe.io',
-    initialCheckpoint: '0x7ae62ac7e5b781b7635210f605dcc95767e8bdaa2684c6ba1a6a578dc7296519',
+    initialCheckpoint: '0x9ade80126d01e706c7fa5e2ea0196bf53d13ed74dee3b0a03460aac4952eec93',
   },
 };
 
